@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:18:02 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/14 12:24:25 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/14 13:47:49 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **node_ptr)
+static void	swap(t_list **node_ptr)
 {
 	t_list	*node;
 	t_list	*next;

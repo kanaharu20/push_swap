@@ -6,13 +6,13 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:36:58 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 13:41:58 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 13:47:38 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_list **node_ptr)
+static void rotate(t_list **node_ptr)
 {
 	t_list	*first;
 	t_list	*second;
