@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 17:15:53 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 17:19:08 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,20 @@ static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count)
 	}
 	pa(a_lst, b_lst);
 }
-static void call_revarse(t_list **a_lst, t_list **b_lst,int reverse_count)
+static void	call_revarse(t_list **a_lst, t_list **b_lst, int reverse_count)
 {
-	while(reverse_count >= 0)
+	while (reverse_count >= 0)
 	{
 		rrb(b_lst);
 		reverse_count--;
 	}
 }
-void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
-{
-	t_list	*lst;
-	int		count;
-	int		i;
-	int		r;
-	int		rotate_count;
 
-	i = 0;
-	count = lst_count(*a_lst);
-	r = root(count);
-	while (i <= r)
-	{
-		lst = *a_lst;
-		while (lst)
-		{
-			if (i * r <= lst->rank && lst->rank < (i + 1) * r)
-				pb(a_lst,b_lst);
-			lst = lst->next;
-		}
-		i++;
-	}
+void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count)
+{
+	int		rotate_count;
+	t_list	*lst;
+
 	while (count >= 0)
 	{
 		rotate_count = 0;
@@ -91,4 +75,27 @@ void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
 		call_rotate_push(a_lst, b_lst, rotate_count);
 		call_reverse(a_lst, b_lst, rotate_count);
 	}
+}
+void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
+{
+	t_list	*lst;
+	int		count;
+	int		i;
+	int		r;
+
+	i = 0;
+	count = lst_count(*a_lst);
+	r = root(count);
+	while (i <= r)
+	{
+		lst = *a_lst;
+		while (lst)
+		{
+			if (i * r <= lst->rank && lst->rank < (i + 1) * r)
+				pb(a_lst, b_lst);
+			lst = lst->next;
+		}
+		i++;
+	}
+	chunk_based_sort2(a_lst, b_lst, count);
 }
