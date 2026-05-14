@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_based_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 17:19:08 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 19:52:12 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	lst_count(t_list *lst)
+int	lst_count(t_list *lst)
 {
 	int		count;
 	t_list	*tmp;
