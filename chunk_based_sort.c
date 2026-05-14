@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   chunk_based_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 15:43:47 by hkanamit         ###   ########.fr       */
+/*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
+/*   Updated: 2026/05/14 15:44:27 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include <stddef.h>
-# include <unistd.h>
-typedef struct s_list
+void	chunk_based_sort(t_list **a_lst,t_list **b_lst)
 {
-	int				content;
-	struct s_list	*next;
-	unsigned int	rank;
-}					t_list;
-int					atoi_original(const char *nptr, int *err_flag);
+	t_list *lst = *a_lst;
+	int lst_count = 0;
+	int i = 0;
+	while(lst->next != NULL)
+	{
+		lst_count++;
+		lst = lst->next;
+	}
 
-#endif
+	while(i < lst_count)
+	{
+		
+	}
+
+
+
+
+}
