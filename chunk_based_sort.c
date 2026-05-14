@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 16:59:48 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 17:12:54 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,26 @@ static int	root(int lst_count)
 	{
 		if ((r * r == lst_count))
 			return (r);
+		r++;
 	}
 	return (-1);
 }
 static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count)
 {
-	while(rotate_count>=0)
+	while (rotate_count >= 0)
 	{
-		rb(*b_lst);
+		rb(b_lst);
 		rotate_count--;
 	}
-	pa(a_list ,b_list);
+	pa(a_lst, b_lst);
+}
+static void call_revarse(t_list **a_lst, t_list **b_lst,int reverse_count)
+{
+	while(reverse_count >= 0)
+	{
+		rrb(b_lst);
+		reverse_count--;
+	}
 }
 void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
 {
@@ -75,12 +84,11 @@ void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
 		lst = *a_lst;
 		while (lst->next != NULL)
 		{
-			if(count == lst->rank)
-				break;
+			if (count == lst->rank)
+				break ;
 			rotate_count++;
 		}
-		call_rotate_push(a_lst,b_lst,rotate_count);
-		call_reverse(a_lst,b_lst,rotate_count);
+		call_rotate_push(a_lst, b_lst, rotate_count);
+		call_reverse(a_lst, b_lst, rotate_count);
 	}
-	while(b_lst)
 }
