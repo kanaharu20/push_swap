@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	swap(t_list **node_ptr)
+static void	swap(t_list **node_ptr)
 {
 	t_list	*node;
 	t_list	*next;

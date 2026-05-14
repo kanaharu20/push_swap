@@ -34,7 +34,7 @@ void	ra(t_list **a_lst)
 	write(1, "ra\n", 3);
 }
 
-void	ra(t_list **b_lst)
+void	rb(t_list **b_lst)
 {
 	rotate(b_lst);
 	write(1, "rb\n", 3);
