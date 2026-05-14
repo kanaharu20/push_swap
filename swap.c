@@ -1,42 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi_hkanamit.c                                    :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/14 10:50:57 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 12:30:59 by kyonaha          ###   ########.fr       */
+/*   Created: 2026/05/13 16:18:02 by kyonaha           #+#    #+#             */
+/*   Updated: 2026/05/14 12:24:25 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	atoi_original(const char *nptr, int *err_flag)
+void	swap(t_list **node_ptr)
 {
-	int		i;
-	int		minus;
-	long	num;
+	t_list	*node;
+	t_list	*next;
 
-	i = 0;
-	minus = 1;
-	num = 0;
-	if (nptr[i] == '+')
-		i++;
-	else if (nptr[i] == '-')
+	node = *node_ptr;
+	if (node != NULL && node->next != NULL)
 	{
-		minus = -minus;
-		i++;
+		next = node->next;
+		node->next = next->next;
+		next->next = node;
+		*node_ptr = next;
 	}
-	while ('0' <= nptr[i] && nptr[i] <= '9')
-	{
-		num = num * 10 + (nptr[i] - '0');
-		i++;
-	}
-	if (num * minus < -2147483648 || 2147483647 < num * minus)
-	{
-		*err_flag = -1;
-		return (-1);
-	}
-	return ((int)(num * minus));
+}
+
+void	sa(t_list **a_node)
+{
+	swap(a_node);
+	write(1, "sa\n", 3);
+}
+
+void	sb(t_list **b_node)
+{
+	swap(b_node);
+	write(1, "sb\n", 3);
+}
+
+void	ss(t_list **a_node, t_list **b_node)
+{
+	swap(a_node);
+	swap(b_node);
+	write(1, "ss\n", 3);
 }
