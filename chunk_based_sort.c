@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 17:12:54 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 17:15:53 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
 		while (lst)
 		{
 			if (i * r <= lst->rank && lst->rank < (i + 1) * r)
-				pb(a_lst);
+				pb(a_lst,b_lst);
 			lst = lst->next;
 		}
 		i++;
