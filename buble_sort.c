@@ -3,45 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   buble_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:43:24 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 14:02:55 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 15:12:08 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	count_node(t_list *lst)
+static int	cmp(int former, int latter)
 {
-	t_list	*tmp;
-	int		count;
-
-	tmp = lst;
-	count = 0;
-	while (tmp->next != NULL)
-	{
-		tmp = tmp->next;
-		count++;
-	}
-	return (count);
+	if (former < latter)
+		return (1);
+	return (0);
 }
 
 void	buble_sort(t_list **a_lst, t_list **b_lst)
 {
-	int count_node = count(a_lst);
-	t_list *a_next;
-	int i = 0;
-	int j = 0;
-	a_next = (*a_lst)->next;
-	while (i < count_node)
-	{
-		while (j < count_node)
-		{
-			if ((*a_lst)->content > a_next->content)
+	t_list	*lst;
+	size_t	i;
+	size_t	cnt_lst;
 
-				j++;
-		}
-		i++;
+	lst = *a_lst;
+	cnt_lst = 0;
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+		cnt_lst++;
 	}
+	while (cnt_lst)
+	{
+		i = 0;
+		while (++i <= cnt_lst)
+		{
+			if (cmp((*a_lst)->content, (*a_lst)->next->content))
+				sa(a_lst);
+			ra(a_lst);
+		}
+		pb(a_lst, b_lst);
+		cnt_lst--;
+	}
+	while (*b_lst != NULL)
+		pa(a_lst, b_lst);
 }

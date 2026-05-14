@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main_hkanamit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 14:09:30 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 14:52:19 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	cmp(int former, int latter)
-{
-	if (former < latter)
-		return (1);
-	return (0);
-}
 int	detect_duplicate_values(t_list *lst, int a)
 {
 	t_list	*tmp;
