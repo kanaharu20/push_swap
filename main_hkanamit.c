@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 11:02:42 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/14 11:09:51 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
+
 int	error_handle(int argc, char *argv[])
 {
 	int	i;
@@ -71,7 +72,7 @@ int	error_handle(int argc, char *argv[])
 			j++;
 		if (argv[i][j] == '0' && argv[i][j + 1] != '\0')
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			return (0);
 		}
 		while (argv[i][j])
