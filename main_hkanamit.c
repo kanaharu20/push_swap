@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main_hkanamit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 11:22:23 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 11:53:47 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	del(lst->content);
+	free(lst);
+}
+void delete (void *content)
+{
+	(void)(*content);
+}
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*current;
+	t_list	*next;
+
+	current = *lst;
+	next = NULL;
+	while (current != NULL)
+	{
+		next = current->next;
+		ft_lstdelone(current, del);
+		current = next;
+	}
+	*lst = NULL;
+	return ;
+}
 
 t_list	*ft_lstnew(void *content)
 {
@@ -43,11 +69,18 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 t_list	*make_a_node(t_list *a_node, int argc, char *argv[])
 {
 	int	i;
+	int	err_flag;
 
+	err_flag = 0;
 	i = 1;
 	while (i < argc)
 	{
-		ft_lstadd_back(&a_node, ft_lstnew(argv[i]));
+		ft_lstadd_back(&a_node, ft_lstnew(atoi_original(argv[i], &err_flag)));
+		if (err_flag == -1)
+		{
+			write(2, "Error\n", 6);
+			return (NULL);
+		}
 		i++;
 	}
 }
@@ -87,7 +120,6 @@ int	error_handle(int argc, char *argv[])
 	}
 	return (1);
 }
-
 
 int	main(int argc, char *argv[])
 {
