@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	detect_duplicate_values(t_list *lst, int a)
+static int	detect_duplicate_values(t_list *lst, int a)
 {
 	t_list	*tmp;
 
@@ -26,7 +26,7 @@ int	detect_duplicate_values(t_list *lst, int a)
 	return (1);
 }
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+static void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	del(lst->content);
 	free(lst);
