@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_hkanamit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 12:33:32 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/14 14:02:55 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	ft_lstlast(*lst)->next = new;
 }
 
-t_list	*make_a_node(t_list **a_node, int argc, char *argv[])
+t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
 {
 	int		i;
 	int		err_flag;
@@ -92,13 +92,13 @@ t_list	*make_a_node(t_list **a_node, int argc, char *argv[])
 	t_list	**first;
 
 	tmp = 0;
-	first = a_node;
+	first = a_lst;
 	err_flag = 0;
 	i = 1;
 	while (i < argc)
 	{
 		tmp = ft_lstnew(atoi_original(argv[i], &err_flag));
-		ft_lstadd_back(&a_node, tmp);
+		ft_lstadd_back(&a_lst, tmp);
 		if (err_flag == -1 || detect_duplicate_values(*first, tmp) == -1)
 		{
 			write(2, "Error\n", 6);
@@ -146,12 +146,12 @@ int	error_handle(int argc, char *argv[])
 
 int	main(int argc, char *argv[])
 {
-	t_list	*a_node;
-	t_list	*b_node;
+	t_list	*a_lst;
+	t_list	*b_lst;
 
-	a_node = NULL;
-	b_node = NULL;
+	a_lst = NULL;
+	b_lst = NULL;
 	if (error_handle(argc, argv) == 0)
 		return (0);
-	a_node = make_a_node(a_node, argc, argv);
+	a_lst = make_a_lst(a_lst, argc, argv);
 }

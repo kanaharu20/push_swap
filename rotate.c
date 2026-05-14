@@ -6,13 +6,13 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:36:58 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 13:47:38 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 14:02:55 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void rotate(t_list **node_ptr)
+static void	rotate(t_list **node_ptr)
 {
 	t_list	*first;
 	t_list	*second;
@@ -28,21 +28,21 @@ static void rotate(t_list **node_ptr)
 	*node_ptr = second;
 }
 
-void	ra(t_list **a_node)
+void	ra(t_list **a_lst)
 {
-	rotate(a_node);
+	rotate(a_lst);
 	write(1, "ra\n", 3);
 }
 
-void	ra(t_list **b_node)
+void	ra(t_list **b_lst)
 {
-	rotate(b_node);
+	rotate(b_lst);
 	write(1, "rb\n", 3);
 }
 
-void	rr(t_list **a_node, t_list **b_node)
+void	rr(t_list **a_lst, t_list **b_lst)
 {
-	rotate(a_node);
-	rotate(b_node);
+	rotate(a_lst);
+	rotate(b_lst);
 	write(1, "rr\n", 3);
 }

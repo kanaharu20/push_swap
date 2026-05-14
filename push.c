@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:25:22 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/14 12:49:14 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/14 14:02:55 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	push(t_list **to, t_list **from)
 	}
 }
 
-void	pa(t_list **a_node, t_list **b_node)
+void	pa(t_list **a_lst, t_list **b_lst)
 {
-	push(a_node, b_node);
+	push(a_lst, b_lst);
 	write(1, "pa\n", 3);
 }
 
-void	pb(t_list **a_node, t_list **b_node)
+void	pb(t_list **a_lst, t_list **b_lst)
 {
-	push(b_node, a_node);
+	push(b_lst, a_lst);
 	write(1, "pb\n", 3);
 }
