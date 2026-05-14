@@ -6,13 +6,13 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 10:50:57 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 11:01:27 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 11:08:31 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	atoi_original(const char *nptr)
+int	atoi_original(const char *nptr, int *err_flag)
 {
 	int		i;
 	int		minus;
@@ -34,8 +34,9 @@ int	atoi_original(const char *nptr)
 		i++;
 	}
 	if (num * minus < -2147483648 || 2147483647 < num * minus)
-		return (NULL);
+	{
+		*err_flag = -1;
+		return (-1);
+	}
 	return ((int)(num * minus));
 }
-
-// long
