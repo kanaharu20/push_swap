@@ -6,21 +6,36 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 11:53:47 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 12:21:37 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	detect_duplicate_values(t_list *lst, int a)
+{
+	t_list	*tmp;
+
+	while (lst != NULL)
+	{
+		if (lst->content = a)
+			return (-1);
+		lst = lst->next;
+	}
+	return (1);
+}
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	del(lst->content);
 	free(lst);
 }
+
 void delete (void *content)
 {
 	(void)(*content);
 }
+
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*current;
@@ -50,6 +65,7 @@ t_list	*ft_lstnew(void *content)
 	node_new->next = NULL;
 	return (node_new);
 }
+
 t_list	*ft_lstlast(t_list *lst)
 {
 	while (lst->next != NULL)
@@ -66,17 +82,23 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	ft_lstlast(*lst)->next = new;
 }
-t_list	*make_a_node(t_list *a_node, int argc, char *argv[])
-{
-	int	i;
-	int	err_flag;
 
+t_list	*make_a_node(t_list **a_node, int argc, char *argv[])
+{
+	int		i;
+	int		err_flag;
+	int		tmp;
+	t_list	**first;
+
+	tmp = 0;
+	first = a_node;
 	err_flag = 0;
 	i = 1;
 	while (i < argc)
 	{
-		ft_lstadd_back(&a_node, ft_lstnew(atoi_original(argv[i], &err_flag)));
-		if (err_flag == -1)
+		tmp = ft_lstnew(atoi_original(argv[i], &err_flag));
+		ft_lstadd_back(&a_node, tmp);
+		if (err_flag == -1 || detect_duplicate_values(*first, tmp) == -1)
 		{
 			write(2, "Error\n", 6);
 			return (NULL);
