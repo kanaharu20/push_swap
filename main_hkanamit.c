@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 12:21:37 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 12:23:24 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ int	detect_duplicate_values(t_list *lst, int a)
 {
 	t_list	*tmp;
 
-	while (lst != NULL)
+	tmp = lst;
+	while (tmp != NULL)
 	{
-		if (lst->content = a)
+		if (tmp->content = a)
 			return (-1);
-		lst = lst->next;
+		tmp = tmp->next;
 	}
 	return (1);
 }
