@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_hkanamit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/13 22:00:29 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/14 11:02:42 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	error_handle(int argc, char *argv[])
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
 			{
-				write(1, "Error\n", 6);
+				write(2, "Error\n", 6);
 				return (0);
 			}
 			j++;
@@ -87,52 +87,6 @@ int	error_handle(int argc, char *argv[])
 	return (1);
 }
 
-int	strlen_original(char *num)
-{
-	int	sign;
-	int	len;
-	int	idx;
-
-	sign = 1;
-	len = 0;
-	idx = 0;
-	if (num[idx] == '-' || num[idx] == '+')
-	{
-		if (num[idx] == '-')
-			sign = -1;
-		idx++;
-	}
-	while (num[idx])
-	{
-		idx++;
-		len++;
-	}
-	return (len * sign);
-}
-
-int	strcmp_original2(char *str)
-{
-}
-int	strcmp_original(t_list *a)
-{
-	char	*a_num;
-	char	*b_num;
-	t_list	*next;
-	int		len_a;
-	int		len_b;
-
-	next = a->next;
-	a_num = a->content;
-	b_num = next->content;
-	len_a = strlen_original(a_num);
-	len_b = strlen_original(b_num);
-	if (len_a < len_b)
-		return (0);
-	else if (len_a > len_b)
-		return (1);
-	strcmp_original2(a_num);
-	return (0);
-}
 
 int	main(int argc, char *argv[])
 {
