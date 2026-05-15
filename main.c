@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 18:32:16 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 19:10:26 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ static t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
 	int		i;
 	int		err_flag;
 	t_list	*tmp;
-	t_list	**first;
 
-	tmp = 0;
-	first = a_lst;
-	err_flag = 0;
 	i = 1;
 	while (i < argc)
 	{
+		err_flag = 0;
 		tmp = ft_lstnew(atoi_original(argv[i], &err_flag));
-		if (err_flag == -1 ||
-			detect_duplicate_values(*first, tmp->content) == -1)
+		if (!tmp || err_flag == -1 || detect_duplicate_values(*a_lst,
+				tmp->content) == -1)
 		{
+			free(tmp);
+			ft_lstclear(a_lst);
 			write(2, "Error\n", 6);
 			return (NULL);
 		}
@@ -78,19 +77,31 @@ int	main(int argc, char *argv[])
 	b_lst = NULL;
 	reset(&bench_data);
 	if (argc < 2)
+	{
+		write(2, "Error\n", 6);
 		return (0);
-	bench_data.flag = call_algo(&argv);
+	}
+	bench_data.flag = call_algo(argv);
+	if (bench_data.flag != 0)
+	{
+		argv++;
+		argc--;
+	}
 	if (error_handle(argc, argv) == 0)
 		return (0);
 	a_lst = make_a_lst(&a_lst, argc, argv);
+	if (!a_lst)
+		return (0);
 	make_rank(&a_lst);
 	bench_data.dis = disorder(&a_lst, &bench_data);
-	if (bench_data.flag == 1 || (bench_data.flag == 4 && bench_data.dis < 0.2))
+	if (bench_data.flag == 1 || ((bench_data.flag == 0 || bench_data.flag == 4)
+			&& bench_data.dis < 0.2))
 		buble_sort(&a_lst, &b_lst, &bench_data);
-	else if (bench_data.flag == 2 || (bench_data.flag == 4
-			&& bench_data.dis < 0.5))
+	else if (bench_data.flag == 2 || ((bench_data.flag == 0
+				|| bench_data.flag == 4) && bench_data.dis < 0.5))
 		chunk_based_sort(&a_lst, &b_lst, &bench_data);
-	else if (bench_data.flag == 3 || bench_data.flag == 4)
+	else if (bench_data.flag == 3 || (bench_data.flag == 0
+			|| bench_data.flag == 4))
 		lsd_sort(&a_lst, &b_lst, &bench_data);
 	return (0);
 }
