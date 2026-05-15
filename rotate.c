@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:36:58 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:54:12 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 16:16:43 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	rb(t_list **b_lst,t_data *bench_data)
 {
 	rotate(b_lst);
 	write(1, "rb\n", 3);
-	bench_data->rb_cnt;
+	bench_data->rb_cnt++;
 }
 
 void	rr(t_list **a_lst, t_list **b_lst,t_data *bench_data)

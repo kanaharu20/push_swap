@@ -50,10 +50,9 @@ int					detect_duplicate_values(t_list *lst, int a);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void delete (void *content);
 void				ft_lstclear(t_list **lst, void (*del)(void *));
-t_list				*ft_lstnew(void *content);
+t_list				*ft_lstnew(int content);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
-t_list				*make_a_lst(t_list **a_lst, int argc, char *argv[]);
 int					ft_isdigit(int c);
 int					error_handle(int argc, char *argv[]);
 
@@ -88,7 +87,7 @@ void				buble_sort(t_list **a_lst, t_list **b_lst,
 /* chunk_based_sort.c */
 int					lst_count(t_list *lst);
 void				chunk_based_sort2(t_list **a_lst, t_list **b_lst,
-						int count);
+						int count, t_data *bench_data);
 void				chunk_based_sort(t_list **a_lst, t_list **b_lst,
 						t_data *bench_data);
 
@@ -100,6 +99,6 @@ void				lsd_sort(t_list **a_lst, t_list **b_lst,
 int					judge(t_list **a_lst, t_list **b_lst);
 
 /* disorder.c */
-int					disorder(t_list **a_lst, t_data *bench_data);
+float				disorder(t_list **a_lst, t_data *bench_data);
 
 #endif

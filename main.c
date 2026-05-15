@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:59:13 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 16:27:47 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,6 @@ int	strcmp_original(char *s1, char *s2)
 	return (0);
 }
 
-static int	call_algo(char *argv[])
-{
-	int	flag;
-
-	flag = 0;
-	if (strcmp_original(argv[1], "--simple"))
-		flag = 1;
-	else if (strcmp_original(argv[1], "--medium"))
-		flag = 2;
-	else if (strcmp_original(argv[1], "--complex"))
-		flag = 3;
-	else if (strcmp_original(argv[1], "--adaptive"))
-		flag = 4;
-	if (flag != 0)
-		argv++;
-	else
-		flag = 4;
-	return (flag);
-}
 void	reset(t_data *bench_data)
 {
 	bench_data->dis = 0;
@@ -89,25 +70,22 @@ void	reset(t_data *bench_data)
 
 int	main(int argc, char *argv[])
 {
-	t_data	*bench_data;
+	t_data	bench_data;
 	t_list	**a_lst;
 	t_list	**b_lst;
-	int		flag;
-	float	dis;
 
-	reset(bench_data);
-	*a_lst = NULL;
-	b_lst = NULL;
+	reset(&bench_data);
+
 	if (error_handle(argc, argv) == 0)
 		return (0);
-	flag = call_algo(argv);
+	bench_data.flag = call_algo(argv);
 	a_lst = make_a_lst(a_lst, argc, argv);
-	dis = disorder(a_lst);
+	bench_data.dis = disorder(a_lst, &bench_data);
 	if (flag == 1 || (flag == 4 && dis < 0.2))
-		buble_sort(a_lst, b_lst, bench_data);
+		buble_sort(a_lst, b_lst, &bench_data);
 	else if (flag == 2 || (flag == 4 && dis < 0.5))
-		chunk_based_sort(a_lst, b_lst, bench_data);
+		chunk_based_sort(a_lst, b_lst, &bench_data);
 	else if (flag == 3 || flag == 4)
-		lsd_sort(a_lst, b_lst, bench_data);
+		lsd_sort(a_lst, b_lst, &bench_data);
 	return (0);
 }

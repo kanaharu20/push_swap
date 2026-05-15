@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lsd_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 16:57:10 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/15 15:46:58 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 16:16:28 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	lsd_sort(t_list **a_lst, t_list **b_lst,t_data *bench_data)
 	int	i;
 	int size;
 
-	size = lst_count(a_lst);
+	size = lst_count(*a_lst);
 	bits = bit_length(size);
 	bit = 0;
 	while (bit < bits)

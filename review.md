@@ -13,42 +13,10 @@
 ### push_swap.h
 
 #### ✅ `typedef struct s_list` の二重定義 → `struct s_data` に修正済み
-
-#### ❌ 1. `ft_lstnew` の宣言と実装の型不一致（コンパイルエラー）
-```c
-// ヘッダ（line 53）
-t_list *ft_lstnew(void *content);
-// list.c の実装
-t_list *ft_lstnew(int content);
-```
-ヘッダを `t_list *ft_lstnew(int content);` に変更する。
-
-#### ❌ 2. `disorder` の戻り値型不一致（コンパイルエラー）
-```c
-// ヘッダ（line 103）
-int disorder(t_list **a_lst, t_data *bench_data);
-// disorder.c の実装
-float disorder(t_list **a_lst, t_data *bench_data);
-```
-ヘッダを `float disorder(...)` に変更する。
-
-#### ❌ 3. `chunk_based_sort2` の宣言に `t_data *bench_data` が欠けている（コンパイルエラー）
-```c
-// ヘッダ（line 90-91）
-void chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count);
-// chunk_based_sort.c の実装
-void chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count, t_data *bench_data);
-```
-ヘッダに `t_data *bench_data` を追加する。
-
-#### ❌ 4. `make_a_lst` がヘッダに宣言されているが static かつ戻り値型不一致
-```c
-// ヘッダ（line 56）
-t_list *make_a_lst(t_list **a_lst, int argc, char *argv[]);
-// main.c の実装
-static t_list **make_a_lst(t_list **a_lst, int argc, char *argv[]);
-```
-`static` 関数はヘッダに宣言不要。この行を削除する。
+#### ✅ `ft_lstnew(void *content)` → `ft_lstnew(int content)`
+#### ✅ `disorder` の戻り値 `int` → `float`
+#### ✅ `chunk_based_sort2` に `t_data *bench_data` を追加
+#### ✅ `make_a_lst` の宣言を削除
 
 ---
 
@@ -189,7 +157,7 @@ bench_data->rb_cnt;     // line 42: 値を読むだけで何もしない（no-op
 
 | 優先度 | ファイル | 内容 |
 |--------|----------|------|
-| 高 | push_swap.h | `ft_lstnew` / `disorder` / `chunk_based_sort2` 宣言型不一致（コンパイルエラー） |
+| ✅ | push_swap.h | `ft_lstnew` / `disorder` / `chunk_based_sort2` 宣言型不一致（修正済み） |
 | 高 | main.c | `bench_data` 未初期化ポインタ |
 | 高 | main.c | `*a_lst = NULL` / `b_lst = NULL` 未初期化ポインタ |
 | 高 | main.c | `disorder` 呼び出しの引数不足（コンパイルエラー） |
@@ -197,5 +165,5 @@ bench_data->rb_cnt;     // line 42: 値を読むだけで何もしない（no-op
 | 高 | lsd_sort.c | `lst_count(a_lst)` → `lst_count(*a_lst)` |
 | 中 | rotate.c | `bench_data->rb_cnt` → `bench_data->rb_cnt++` |
 | 中 | main.c | `error_handle` がフラグを拒否する問題 |
-| 低 | push_swap.h | `make_a_lst` の宣言を削除 |
+| ✅ | push_swap.h | `make_a_lst` の宣言を削除（修正済み） |
 | 低 | call_func.c | ポインタ比較・デッドコードの整理 |
