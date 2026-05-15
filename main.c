@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 16:56:16 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 18:12:38 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	main(int argc, char *argv[])
 	t_list	*a_lst;
 	t_list	*b_lst;
 
+	a_lst = NULL;
+	b_lst = NULL;
 	reset(&bench_data);
 	bench_data.flag = call_algo(argv);
 	if (error_handle(argc, argv) == 0)
