@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:18:59 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:26:38 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_list
 	size_t	rrr_cnt;
 	float	dis;
 	int		flag;
-}			data;
+}			t_data;
 
 /* atoi_hkanamit.c */
 int		atoi_original(const char *nptr, int *err_flag);

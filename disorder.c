@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 11:10:55 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 14:53:55 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:26:17 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ float	disorder(t_list **a_lst)
 	mistakes = 0;
 	total_pairs = 0;
 	tmp = *a_lst;
-	while (tmp->next->next != NULL) //要チェック
+	while (tmp->next != NULL)
 	{
 		if (tmp->content > tmp->next->content)
 			mistakes++;

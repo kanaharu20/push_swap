@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:23:11 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:25:54 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static t_list	**make_a_lst(t_list **a_lst, int argc, char *argv[])
 	{
 		tmp = ft_lstnew(atoi_original(argv[i], &err_flag));
 		ft_lstadd_back(a_lst, tmp);
-		if (err_flag == -1 || detect_duplicate_values(*first, tmp->content) ==
-			-1)
+		if (err_flag == -1 ||
+			detect_duplicate_values(*first, tmp->content) == -1)
 		{
 			write(2, "Error\n", 6);
 			return (NULL);
@@ -77,7 +77,7 @@ int	main(int argc, char *argv[])
 	int		flag;
 	float	dis;
 
-	a_lst = NULL;
+	*a_lst = NULL;
 	b_lst = NULL;
 	if (error_handle(argc, argv) == 0)
 		return (0);
