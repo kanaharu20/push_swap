@@ -6,26 +6,12 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 17:19:08 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 10:57:35 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	lst_count(t_list *lst)
-{
-	int		count;
-	t_list	*tmp;
-
-	count = 0;
-	tmp = lst;
-	while (tmp->next != NULL)
-	{
-		count++;
-		tmp = tmp->next;
-	}
-	return (count);
-}
 static int	root(int lst_count)
 {
 	int	r;
