@@ -45,40 +45,27 @@ void swap(t_list **node_ptr);            // 削除
 #### ✅ 文字列比較を `strcmp_original` に変更
 #### ✅ `bench_data` を値型 `t_data bench_data` に変更し `reset(&bench_data)` で初期化
 
-#### ❌ 1. `a_lst` が未初期化のまま `make_a_lst` に渡される（クラッシュ）
+#### ✅ 1. `a_lst` を `t_list *` に変更し `&a_lst` を渡す形に修正
+#### ✅ 2. `b_lst` を `t_list *` に変更し `&b_lst` を渡す形に修正
+#### ✅ 3. `make_rank(&a_lst)` を追加
+#### ✅ 4. `call_algo` を `error_handle` より前に移動
+
+#### ❌ 5. `make_a_lst` の `return (a_lst)` が型不一致（動作不正）
+戻り値型は `t_list *` なのに `a_lst`（`t_list **`）をそのまま返している。
+リストの先頭ではなく `a_lst` 変数自身のアドレスが返るため、呼び出し元の `a_lst` が上書きされて壊れる。
 ```c
-t_list **a_lst;                              // 未初期化
-a_lst = make_a_lst(a_lst, argc, argv);       // ガベージ値を渡す
-```
-`make_a_lst` 内で `ft_lstadd_back(a_lst, tmp)` が `*a_lst` をデリファレンスするためクラッシュ。
-修正:
-```c
-t_list  *list_a = NULL;
-t_list **a_lst = &list_a;
+return (a_lst);   // NG: スタック上の &a_lst を返す
+return (*a_lst);  // OK: リストの先頭ノードを返す
 ```
 
-#### ❌ 2. `b_lst` が未初期化のまま渡される（クラッシュ）
+#### ❌ 6. `argc` チェック前に `argv[1]` にアクセス（クラッシュ）
+引数なし（`argc == 1`）で実行すると `call_algo` 内の `argv[1]` が NULL になり
+`strcmp_original` 内で NULL デリファレンス → クラッシュ。
 ```c
-t_list **b_lst;    // 未初期化
-buble_sort(a_lst, b_lst, &bench_data);    // ソート関数内で *b_lst にアクセス → クラッシュ
+// 修正案: call_algo の前に追加
+if (argc < 2)
+    return (0);
 ```
-修正:
-```c
-t_list  *list_b = NULL;
-t_list **b_lst = &list_b;
-```
-
-#### ❌ 3. `make_rank` が未呼び出し
-`lsd_sort` と `chunk_based_sort` はノードの `rank` を使うが初期化されていない。
-```c
-a_lst = make_a_lst(a_lst, argc, argv);
-make_rank(a_lst);    // ← この行が必要
-```
-
-#### ❌ 4. `error_handle` がフラグ引数（`--simple` 等）を拒否する
-`error_handle` は全引数を整数チェックするため `--simple` 等を渡すと
-`Error` を出力して終了し、`call_algo` に到達しない。
-`call_algo` を先に呼んでフラグをスキップした後に `error_handle` を呼ぶ必要がある。
 
 ---
 
@@ -150,7 +137,6 @@ make_rank(a_lst);    // ← この行が必要
 | 優先度 | ファイル | 内容 |
 |--------|----------|------|
 | 高 | push_swap.h | `strcmp_original` の宣言を追加 |
-| 高 | main.c | `a_lst` / `b_lst` 未初期化 |
-| 高 | main.c | `make_rank` 未呼び出し |
-| 中 | main.c | `error_handle` がフラグを拒否する問題 |
+| 高 | main.c | `make_a_lst` の `return (a_lst)` → `return (*a_lst)` |
+| 高 | main.c | `argc < 2` チェックを `call_algo` の前に追加 |
 | 低 | push_swap.h | `push` / `swap` の外部宣言を削除 |
