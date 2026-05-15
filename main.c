@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 16:32:49 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 16:42:38 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ int	main(int argc, char *argv[])
 	t_list	**b_lst;
 
 	reset(&bench_data);
-
+	bench_data.flag = call_algo(argv);
 	if (error_handle(argc, argv) == 0)
 		return (0);
-	bench_data.flag = call_algo(argv);
 	a_lst = make_a_lst(a_lst, argc, argv);
+	make_rank(a_lst);
 	bench_data.dis = disorder(a_lst, &bench_data);
 	if (bench_data.flag == 1 || (bench_data.flag == 4 && bench_data.dis < 0.2))
 		buble_sort(a_lst, b_lst, &bench_data);
-	else if (bench_data.flag == 2 ||
-		(bench_data.flag == 4 && bench_data.dis < 0.5))
+	else if (bench_data.flag == 2 || (bench_data.flag == 4
+			&& bench_data.dis < 0.5))
 		chunk_based_sort(a_lst, b_lst, &bench_data);
 	else if (bench_data.flag == 3 || bench_data.flag == 4)
 		lsd_sort(a_lst, b_lst, &bench_data);
