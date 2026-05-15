@@ -77,6 +77,8 @@ int	main(int argc, char *argv[])
 	a_lst = NULL;
 	b_lst = NULL;
 	reset(&bench_data);
+	if (argc < 2)
+		return (0);
 	bench_data.flag = call_algo(argv);
 	if (error_handle(argc, argv) == 0)
 		return (0);
