@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 16:39:03 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:18:59 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ typedef struct s_list
 	struct s_list	*next;
 	unsigned int	rank;
 }					t_list;
+
+typedef struct s_list
+{
+	size_t	total;
+	size_t	sa_cnt;
+	size_t	sb_cnt;
+	size_t	ss_cnt;
+	size_t	pa_cnt;
+	size_t	ra_cnt;
+	size_t	rb_cnt;
+	size_t	rr_cnt;
+	size_t	rra_cnt;
+	size_t	rrb_cnt;
+	size_t	rrr_cnt;
+	float	dis;
+	int		flag;
+}			data;
 
 /* atoi_hkanamit.c */
 int		atoi_original(const char *nptr, int *err_flag);

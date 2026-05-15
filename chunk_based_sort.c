@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_based_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:02:25 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:08:36 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static int	root(int lst_count)
 	r = 0;
 	while ((long)(r * r) <= 2147483647)
 	{
-		if ((r * r == lst_count))
-			return (r);
+		if ((r * r > lst_count))
+			break ;
 		r++;
 	}
-	return (-1);
+	return (r);
 }
 
 static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count)

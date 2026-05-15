@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:06:38 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:23:11 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ static t_list	**make_a_lst(t_list **a_lst, int argc, char *argv[])
 	return (a_lst);
 }
 
-int	strcmp(char *s1, char *s2)
+int	strcmp_original(char *s1, char *s2)
 {
 	int	idx;
 
 	idx = 0;
 	while (s2[idx] && s1[idx] == s2[idx])
 		idx++;
-	if (s1[idx] == '\0')
+	if (s1[idx] == s2[idx])
 		return (1);
 	return (0);
 }
@@ -55,13 +55,13 @@ static int	call_algo(char *argv[])
 	int	flag;
 
 	flag = 0;
-	if (strcmp(argv[1], "--simple"))
+	if (strcmp_original(argv[1], "--simple"))
 		flag = 1;
-	else if (strcmp(argv[1], "--medium"))
+	else if (strcmp_original(argv[1], "--medium"))
 		flag = 2;
-	else if (strcmp(argv[1], "--complex"))
+	else if (strcmp_original(argv[1], "--complex"))
 		flag = 3;
-	else if (strcmp(argv[1], "--adaptive"))
+	else if (strcmp_original(argv[1], "--adaptive"))
 		flag = 4;
 	if (flag != 0)
 		argv++;
