@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 18:12:38 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 18:32:16 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
 	while (i < argc)
 	{
 		tmp = ft_lstnew(atoi_original(argv[i], &err_flag));
-		ft_lstadd_back(a_lst, tmp);
 		if (err_flag == -1 ||
 			detect_duplicate_values(*first, tmp->content) == -1)
 		{
 			write(2, "Error\n", 6);
 			return (NULL);
 		}
+		ft_lstadd_back(a_lst, tmp);
 		i++;
 	}
 	return (*a_lst);
@@ -79,7 +79,7 @@ int	main(int argc, char *argv[])
 	reset(&bench_data);
 	if (argc < 2)
 		return (0);
-	bench_data.flag = call_algo(argv);
+	bench_data.flag = call_algo(&argv);
 	if (error_handle(argc, argv) == 0)
 		return (0);
 	a_lst = make_a_lst(&a_lst, argc, argv);

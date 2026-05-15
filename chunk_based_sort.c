@@ -26,25 +26,6 @@ static int	root(int lst_count)
 	return (r);
 }
 
-static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count,
-		t_data *bench_data)
-{
-	while (rotate_count >= 0)
-	{
-		rb(b_lst, bench_data);
-		rotate_count--;
-	}
-	pa(a_lst, b_lst, bench_data);
-}
-
-static void	call_reverse(t_list **b_lst, int reverse_count, t_data *bench_data)
-{
-	while (reverse_count >= 0)
-	{
-		rrb(b_lst, bench_data);
-		reverse_count--;
-	}
-}
 
 void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 		t_data *bench_data)
@@ -55,24 +36,28 @@ void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 	while (count >= 0)
 	{
 		rotate_count = 0;
-		lst = *a_lst;
-		while (lst->next != NULL)
+		lst = *b_lst;
+		while (lst != NULL)
 		{
 			if (count == lst->rank)
 				break ;
 			rotate_count++;
 			lst = lst->next;
 		}
-		call_rotate_push(a_lst, b_lst, rotate_count, bench_data);
-		call_reverse(b_lst, rotate_count, bench_data);
+		while (rotate_count > 0)
+		{
+			rb(b_lst, bench_data);
+			rotate_count--;
+		}
+		pa(a_lst, b_lst, bench_data);
 		count--;
 	}
 }
 
 void	chunk_based_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
-	t_list	*lst;
 	int		count;
+	int		remaining;
 	int		i;
 	int		r;
 
@@ -81,14 +66,16 @@ void	chunk_based_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 	r = root(count);
 	while (i <= r)
 	{
-		lst = *a_lst;
-		while (lst)
+		remaining = lst_count(*a_lst);
+		while (remaining > 0)
 		{
-			if (i * r <= lst->rank && lst->rank < (i + 1) * r)
+			if (i * r <= (*a_lst)->rank && (*a_lst)->rank < (i + 1) * r)
 				pb(a_lst, b_lst, bench_data);
-			lst = lst->next;
+			else
+				ra(a_lst, bench_data);
+			remaining--;
 		}
 		i++;
 	}
-	chunk_based_sort2(a_lst, b_lst, count, bench_data);
+	chunk_based_sort2(a_lst, b_lst, count - 1, bench_data);
 }
