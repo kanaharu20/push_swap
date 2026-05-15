@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 11:26:10 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 12:44:33 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
+static t_list	**make_a_lst(t_list **a_lst, int argc, char *argv[])
 {
 	int		i;
 	int		err_flag;
@@ -34,16 +34,48 @@ t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
 		}
 		i++;
 	}
+	return (a_lst);
+}
+
+static int	call_algo(char *argv[])
+{
+	int	flag;
+
+	flag = 0;
+	if (argv[1] == "--simple")
+		flag = 1;
+	else if (argv[1] == "--medium")
+		flag = 2;
+	else if (argv[1] == "--complex")
+		flag = 3;
+	else if (argv[1] == "--adaptive")
+		flag = 4;
+	if (flag != 0)
+		argv++;
+	else
+		flag = 4;
+	return (flag);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_list	*a_lst;
-	t_list	*b_lst;
+	t_list	**a_lst;
+	t_list	**b_lst;
+	int		flag;
+	float	dis;
 
 	a_lst = NULL;
 	b_lst = NULL;
 	if (error_handle(argc, argv) == 0)
 		return (0);
+	flag = call_algo(argv);
 	a_lst = make_a_lst(a_lst, argc, argv);
+	dis = disorder(a_lst);
+	if (flag == 1 || (flag == 4 && dis < 0.2))
+		buble_sort(a_lst, b_lst);
+	else if (flag == 2 || (flag == 4 && dis < 0.5))
+		chunk_based_sort(a_lst, b_lst);
+	else if (flag == 3 || flag == 4)
+		lsd_sort(a_lst, b_lst);
+	return (0);
 }

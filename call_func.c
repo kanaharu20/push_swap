@@ -25,7 +25,7 @@ int	call_algo(char *argv[])
 		flag = 3;
 	else if (argv[1] == "--adaptive")
 		flag = 4;
-	
+
 	if (flag != 0)
 		argv++;
 	else
