@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 16:38:24 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 17:08:14 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,40 @@ typedef struct s_list
 {
 	int				content;
 	struct s_list	*next;
-	int	rank;
+	int				rank;
 }					t_list;
 
 typedef struct s_data
 {
-	int		total;
-	int		sa_cnt;
-	int		sb_cnt;
-	int		ss_cnt;
-	int		pa_cnt;
-	int		pb_cnt;
-	int		ra_cnt;
-	int		rb_cnt;
-	int		rr_cnt;
-	int		rra_cnt;
-	int		rrb_cnt;
-	int		rrr_cnt;
-	float	dis;
-	int		flag;
-}			t_data;
+	int				total;
+	int				sa_cnt;
+	int				sb_cnt;
+	int				ss_cnt;
+	int				pa_cnt;
+	int				pb_cnt;
+	int				ra_cnt;
+	int				rb_cnt;
+	int				rr_cnt;
+	int				rra_cnt;
+	int				rrb_cnt;
+	int				rrr_cnt;
+	float			dis;
+	int				flag;
+}					t_data;
 
 /* atoi_hkanamit.c */
 int					atoi_original(const char *nptr, int *err_flag);
 
 /* main_hkanamit.c */
 int					detect_duplicate_values(t_list *lst, int a);
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void delete (void *content);
-void				ft_lstclear(t_list **lst, void (*del)(void *));
+void				ft_lstclear(t_list **lst);
 t_list				*ft_lstnew(int content);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 int					ft_isdigit(int c);
 int					error_handle(int argc, char *argv[]);
-
+int					strcmp_original(char *s1, char *s2);
+int					call_algo(char *argv[]);
 /* push.c */
 void				push(t_list **to, t_list **from);
 void				pa(t_list **a_lst, t_list **b_lst, t_data *bench_data);
@@ -86,8 +85,8 @@ void				buble_sort(t_list **a_lst, t_list **b_lst,
 
 /* chunk_based_sort.c */
 int					lst_count(t_list *lst);
-void				chunk_based_sort2(t_list **a_lst, t_list **b_lst,
-						int count, t_data *bench_data);
+void				chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
+						t_data *bench_data);
 void				chunk_based_sort(t_list **a_lst, t_list **b_lst,
 						t_data *bench_data);
 

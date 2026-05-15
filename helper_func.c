@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 10:57:04 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 14:49:26 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 17:03:24 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,3 @@ int	detect_duplicate_values(t_list *lst, int a)
 	return (1);
 }
 
-void delete (void *content)
-{
-	(void)(content);
-}

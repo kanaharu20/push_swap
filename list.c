@@ -6,19 +6,13 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 11:00:20 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:03:25 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 17:04:32 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
-{
-	del(lst->content);
-	free(lst);
-}
-
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst)
 {
 	t_list	*current;
 	t_list	*next;
@@ -28,7 +22,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	while (current != NULL)
 	{
 		next = current->next;
-		ft_lstdelone(current, del);
+		free(lst);
 		current = next;
 	}
 	*lst = NULL;

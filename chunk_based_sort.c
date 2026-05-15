@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:43:56 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 17:00:50 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count,
 	pa(a_lst, b_lst, bench_data);
 }
 
-static void	call_reverse(t_list **a_lst, t_list **b_lst, int reverse_count,
-		t_data *bench_data)
+static void	call_reverse(t_list **b_lst, int reverse_count, t_data *bench_data)
 {
 	while (reverse_count >= 0)
 	{
@@ -65,7 +64,7 @@ void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 			lst = lst->next;
 		}
 		call_rotate_push(a_lst, b_lst, rotate_count, bench_data);
-		call_reverse(a_lst, b_lst, rotate_count, bench_data);
+		call_reverse(b_lst, rotate_count, bench_data);
 		count--;
 	}
 }

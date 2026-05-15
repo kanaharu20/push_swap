@@ -6,13 +6,13 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:25:22 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/15 15:50:12 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 17:08:51 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_list **to, t_list **from)
+ void	push(t_list **to, t_list **from)
 {
 	t_list	*to_node;
 	t_list	*from_node;
