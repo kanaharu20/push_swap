@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:18:02 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/14 15:03:08 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:55:31 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,24 @@ static void	swap(t_list **node_ptr)
 	}
 }
 
-void	sa(t_list **a_node)
+void	sa(t_list **a_node,t_data *bench_data)
 {
 	swap(a_node);
 	write(1, "sa\n", 3);
+	bench_data->sa_cnt++;
 }
 
-void	sb(t_list **b_node)
+void	sb(t_list **b_node,t_data *bench_data)
 {
 	swap(b_node);
 	write(1, "sb\n", 3);
+	bench_data->sb_cnt++;
 }
 
-void	ss(t_list **a_node, t_list **b_node)
+void	ss(t_list **a_node, t_list **b_node,t_data *bench_data)
 {
 	swap(a_node);
 	swap(b_node);
 	write(1, "ss\n", 3);
+	bench_data->ss_cnt++;
 }

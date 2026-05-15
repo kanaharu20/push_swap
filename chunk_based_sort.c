@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_based_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:08:36 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:43:56 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,29 @@ static int	root(int lst_count)
 	return (r);
 }
 
-static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count)
+static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count,
+		t_data *bench_data)
 {
 	while (rotate_count >= 0)
 	{
-		rb(b_lst);
+		rb(b_lst, bench_data);
 		rotate_count--;
 	}
-	pa(a_lst, b_lst);
+	pa(a_lst, b_lst, bench_data);
 }
 
-static void	call_reverse(t_list **a_lst, t_list **b_lst, int reverse_count)
+static void	call_reverse(t_list **a_lst, t_list **b_lst, int reverse_count,
+		t_data *bench_data)
 {
 	while (reverse_count >= 0)
 	{
-		rrb(b_lst);
+		rrb(b_lst, bench_data);
 		reverse_count--;
 	}
 }
 
-void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count)
+void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
+		t_data *bench_data)
 {
 	int		rotate_count;
 	t_list	*lst;
@@ -61,13 +64,13 @@ void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count)
 			rotate_count++;
 			lst = lst->next;
 		}
-		call_rotate_push(a_lst, b_lst, rotate_count);
-		call_reverse(a_lst, b_lst, rotate_count);
-		count --;
+		call_rotate_push(a_lst, b_lst, rotate_count, bench_data);
+		call_reverse(a_lst, b_lst, rotate_count, bench_data);
+		count--;
 	}
 }
 
-void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
+void	chunk_based_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
 	t_list	*lst;
 	int		count;
@@ -83,10 +86,10 @@ void	chunk_based_sort(t_list **a_lst, t_list **b_lst)
 		while (lst)
 		{
 			if (i * r <= lst->rank && lst->rank < (i + 1) * r)
-				pb(a_lst, b_lst);
+				pb(a_lst, b_lst, bench_data);
 			lst = lst->next;
 		}
 		i++;
 	}
-	chunk_based_sort2(a_lst, b_lst, count);
+	chunk_based_sort2(a_lst, b_lst, count, bench_data);
 }

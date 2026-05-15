@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:25:54 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:59:13 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static t_list	**make_a_lst(t_list **a_lst, int argc, char *argv[])
 	{
 		tmp = ft_lstnew(atoi_original(argv[i], &err_flag));
 		ft_lstadd_back(a_lst, tmp);
-		if (err_flag == -1 ||
-			detect_duplicate_values(*first, tmp->content) == -1)
+		if (err_flag == -1 || detect_duplicate_values(*first, tmp->content) ==
+			-1)
 		{
 			write(2, "Error\n", 6);
 			return (NULL);
@@ -69,14 +69,33 @@ static int	call_algo(char *argv[])
 		flag = 4;
 	return (flag);
 }
+void	reset(t_data *bench_data)
+{
+	bench_data->dis = 0;
+	bench_data->flag = 0;
+	bench_data->pa_cnt = 0;
+	bench_data->pb_cnt = 0;
+	bench_data->ra_cnt = 0;
+	bench_data->rb_cnt = 0;
+	bench_data->rr_cnt = 0;
+	bench_data->rra_cnt = 0;
+	bench_data->rrb_cnt = 0;
+	bench_data->rrr_cnt = 0;
+	bench_data->sa_cnt = 0;
+	bench_data->sb_cnt = 0;
+	bench_data->ss_cnt = 0;
+	bench_data->total = 0;
+}
 
 int	main(int argc, char *argv[])
 {
+	t_data	*bench_data;
 	t_list	**a_lst;
 	t_list	**b_lst;
 	int		flag;
 	float	dis;
 
+	reset(bench_data);
 	*a_lst = NULL;
 	b_lst = NULL;
 	if (error_handle(argc, argv) == 0)
@@ -85,10 +104,10 @@ int	main(int argc, char *argv[])
 	a_lst = make_a_lst(a_lst, argc, argv);
 	dis = disorder(a_lst);
 	if (flag == 1 || (flag == 4 && dis < 0.2))
-		buble_sort(a_lst, b_lst);
+		buble_sort(a_lst, b_lst, bench_data);
 	else if (flag == 2 || (flag == 4 && dis < 0.5))
-		chunk_based_sort(a_lst, b_lst);
+		chunk_based_sort(a_lst, b_lst, bench_data);
 	else if (flag == 3 || flag == 4)
-		lsd_sort(a_lst, b_lst);
+		lsd_sort(a_lst, b_lst, bench_data);
 	return (0);
 }

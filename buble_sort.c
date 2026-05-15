@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buble_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:43:24 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/14 15:12:08 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:42:12 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	cmp(int former, int latter)
 	return (0);
 }
 
-void	buble_sort(t_list **a_lst, t_list **b_lst)
+void	buble_sort(t_list **a_lst, t_list **b_lst,t_data *bench_data)
 {
 	t_list	*lst;
 	size_t	i;
@@ -38,12 +38,12 @@ void	buble_sort(t_list **a_lst, t_list **b_lst)
 		while (++i <= cnt_lst)
 		{
 			if (cmp((*a_lst)->content, (*a_lst)->next->content))
-				sa(a_lst);
-			ra(a_lst);
+				sa(a_lst,bench_data);
+			ra(a_lst,bench_data);
 		}
-		pb(a_lst, b_lst);
+		pb(a_lst, b_lst,bench_data);
 		cnt_lst--;
 	}
 	while (*b_lst != NULL)
-		pa(a_lst, b_lst);
+		pa(a_lst, b_lst,bench_data);
 }

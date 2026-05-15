@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:43:06 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/14 14:04:34 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:52:11 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,24 @@ static void	reverse_rotate(t_list **node_ptr)
 	*node_ptr = last;
 }
 
-void	rra(t_list **a_lst)
+void	rra(t_list **a_lst, t_data *bench_data)
 {
 	reverse_rotate(a_lst);
 	write(1, "rra\n", 4);
+	bench_data->rra_cnt++;
 }
 
-void	rrb(t_list **b_lst)
+void	rrb(t_list **b_lst, t_data *bench_data)
 {
 	reverse_rotate(b_lst);
 	write(1, "rrb\n", 4);
+	bench_data->rrb_cnt++;
 }
 
-void	rrr(t_list **a_lst, t_list **b_lst)
+void	rrr(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
 	reverse_rotate(a_lst);
 	reverse_rotate(b_lst);
 	write(1, "rrr\n", 4);
+	bench_data->rrr_cnt++;
 }

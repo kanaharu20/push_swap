@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:25:22 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/14 14:02:55 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:50:12 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ static void	push(t_list **to, t_list **from)
 	}
 }
 
-void	pa(t_list **a_lst, t_list **b_lst)
+void	pa(t_list **a_lst, t_list **b_lst,t_data *bench_data)
 {
 	push(a_lst, b_lst);
 	write(1, "pa\n", 3);
+	bench_data->pa_cnt ++;
 }
 
-void	pb(t_list **a_lst, t_list **b_lst)
+void	pb(t_list **a_lst, t_list **b_lst,t_data *bench_data)
 {
 	push(b_lst, a_lst);
 	write(1, "pb\n", 3);
+	bench_data->pb_cnt ++;
 }
