@@ -6,13 +6,15 @@
 #    By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 17:28:12 by hkanamit          #+#    #+#              #
-#    Updated: 2026/05/15 10:55:57 by hkanamit         ###   ########.fr        #
+#    Updated: 2026/05/15 11:06:23 by hkanamit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap.a
 
-SOURCE = 
+SOURCE = atoi.c buble_sort.c chunk_base_sort.c \
+		helper_func.c judge.c list.c lsd_sort.c main.c\
+		push.c rank.c reverese_rotate.c rotate.c swap.c
 
 OBJECT = $(SOURCE :.c=.o)
 
