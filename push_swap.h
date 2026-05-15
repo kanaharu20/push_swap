@@ -68,8 +68,16 @@ void	buble_sort(t_list **a_lst, t_list **b_lst);
 
 /* chunk_based_sort.c */
 int		lst_count(t_list *lst);
-int		root(int lst_count);
-void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count);
+void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count);
 void	chunk_based_sort(t_list **a_lst, t_list **b_lst);
+
+/* lsd_sort.c */
+void	lsd_sort(t_list **a_lst, t_list **b_lst);
+
+/* judge.c */
+int		judge(t_list **a_lst, t_list **b_lst);
+
+/* disorder.c */
+int		disorder(t_list **a_lst);
 
 #endif
