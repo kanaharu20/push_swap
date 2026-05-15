@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 16:01:31 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 16:33:57 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ typedef struct s_list
 
 typedef struct s_data
 {
-	size_t			total;
-	size_t			sa_cnt;
-	size_t			sb_cnt;
-	size_t			ss_cnt;
-	size_t			pa_cnt;
-	size_t			pb_cnt;
-	size_t			ra_cnt;
-	size_t			rb_cnt;
-	size_t			rr_cnt;
-	size_t			rra_cnt;
-	size_t			rrb_cnt;
-	size_t			rrr_cnt;
+	unsigned int	total;
+	unsigned int	sa_cnt;
+	unsigned int	sb_cnt;
+	unsigned int	ss_cnt;
+	unsigned int	pa_cnt;
+	unsigned int	pb_cnt;
+	unsigned int	ra_cnt;
+	unsigned int	rb_cnt;
+	unsigned int	rr_cnt;
+	unsigned int	rra_cnt;
+	unsigned int	rrb_cnt;
+	unsigned int	rrr_cnt;
 	float			dis;
 	int				flag;
 }					t_data;
