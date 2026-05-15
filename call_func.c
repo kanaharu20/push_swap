@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:14:03 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 12:24:16 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 12:58:16 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	call_algo(char *argv[])
 		flag = 3;
 	else if (argv[1] == "--adaptive")
 		flag = 4;
+	
 	if (flag != 0)
 		argv++;
 	else
