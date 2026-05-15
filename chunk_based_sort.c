@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_based_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:32:44 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 11:08:10 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 15:02:25 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	call_rotate_push(t_list **a_lst, t_list **b_lst, int rotate_count)
 	pa(a_lst, b_lst);
 }
 
-static void	call_revarse(t_list **a_lst, t_list **b_lst, int reverse_count)
+static void	call_reverse(t_list **a_lst, t_list **b_lst, int reverse_count)
 {
 	while (reverse_count >= 0)
 	{
@@ -59,9 +59,11 @@ void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count)
 			if (count == lst->rank)
 				break ;
 			rotate_count++;
+			lst = lst->next;
 		}
 		call_rotate_push(a_lst, b_lst, rotate_count);
 		call_reverse(a_lst, b_lst, rotate_count);
+		count --;
 	}
 }
 

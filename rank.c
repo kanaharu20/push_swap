@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rank.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 15:54:20 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/14 16:10:31 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 14:48:31 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	make_rank(t_list **a_lst)
 	t_list			*curr;
 	unsigned int	rank;
 
-	curr = 0;
+	curr = *a_lst;
 	while (curr)
 	{
 		rank = 0;

@@ -6,13 +6,13 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 11:10:55 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 12:27:39 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 14:53:55 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	disorder(t_list **a_lst)
+float	disorder(t_list **a_lst)
 {
 	float	mistakes;
 	float	total_pairs;
@@ -21,12 +21,12 @@ int	disorder(t_list **a_lst)
 	mistakes = 0;
 	total_pairs = 0;
 	tmp = *a_lst;
-	while (tmp->next != NULL)
+	while (tmp->next->next != NULL) //要チェック
 	{
-		tmp = tmp->next;
 		if (tmp->content > tmp->next->content)
 			mistakes++;
 		total_pairs++;
+		tmp = tmp->next;
 	}
-	return ((float)(mistakes / total_pairs));
+	return (((float)mistakes / total_pairs));
 }

@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 11:00:20 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 11:26:08 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/15 15:03:25 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	return ;
 }
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content)
 {
 	t_list	*node_new;
 
