@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 16:33:57 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/15 16:38:24 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@ typedef struct s_list
 {
 	int				content;
 	struct s_list	*next;
-	unsigned int	rank;
+	int	rank;
 }					t_list;
 
 typedef struct s_data
 {
-	unsigned int	total;
-	unsigned int	sa_cnt;
-	unsigned int	sb_cnt;
-	unsigned int	ss_cnt;
-	unsigned int	pa_cnt;
-	unsigned int	pb_cnt;
-	unsigned int	ra_cnt;
-	unsigned int	rb_cnt;
-	unsigned int	rr_cnt;
-	unsigned int	rra_cnt;
-	unsigned int	rrb_cnt;
-	unsigned int	rrr_cnt;
-	float			dis;
-	int				flag;
-}					t_data;
+	int		total;
+	int		sa_cnt;
+	int		sb_cnt;
+	int		ss_cnt;
+	int		pa_cnt;
+	int		pb_cnt;
+	int		ra_cnt;
+	int		rb_cnt;
+	int		rr_cnt;
+	int		rra_cnt;
+	int		rrb_cnt;
+	int		rrr_cnt;
+	float	dis;
+	int		flag;
+}			t_data;
 
 /* atoi_hkanamit.c */
 int					atoi_original(const char *nptr, int *err_flag);
