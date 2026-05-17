@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 14:46:09 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 15:02:14 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int argc, char *argv[])
 	t_list	*b_lst;
 	int		bench_flag;
 
-	bench_flag = 0;
 	a_lst = NULL;
 	b_lst = NULL;
 	reset(&bench_data);
@@ -84,13 +83,13 @@ int	main(int argc, char *argv[])
 	}
 	bench_flag = judge_bench_flag(argv);
 	bench_data.flag = call_algo(argv, bench_flag);
+	if (bench_flag == 1)
+	{
+		argv++;
+		argc--;
+	}
 	if (bench_data.flag != 0)
 	{
-		if (bench_flag == 1)
-		{
-			argv++;
-			argc--;
-		}
 		argv++;
 		argc--;
 	}
@@ -102,10 +101,10 @@ int	main(int argc, char *argv[])
 	make_rank(&a_lst);
 	bench_data.dis = disorder(&a_lst, &bench_data);
 	if (bench_data.flag == 1 || ((bench_data.flag == 0 || bench_data.flag == 4)
-			&& bench_data.dis < 20))
+			&& bench_data.dis < 2000))
 		buble_sort(&a_lst, &b_lst, &bench_data);
 	else if (bench_data.flag == 2 || ((bench_data.flag == 0
-				|| bench_data.flag == 4) && bench_data.dis < 50))
+				|| bench_data.flag == 4) && bench_data.dis < 5000))
 		chunk_based_sort(&a_lst, &b_lst, &bench_data);
 	else if (bench_data.flag == 3 || (bench_data.flag == 0
 			|| bench_data.flag == 4))

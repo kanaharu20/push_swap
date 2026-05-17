@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bench_mark.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 10:35:05 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 12:53:32 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 15:01:59 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	judge_bench_flag(char **argv)
 void	write_strategy(t_data bench_data)
 {
 	if (bench_data.flag == 1 || ((bench_data.flag == 0 || bench_data.flag == 4)
-			&& bench_data.dis < 20))
+			&& bench_data.dis < 2000))
 		write(1, "Simple / O(n²)\n", 16);
 	else if (bench_data.flag == 2 || ((bench_data.flag == 0
-				|| bench_data.flag == 4) && bench_data.dis < 50))
+				|| bench_data.flag == 4) && bench_data.dis < 5000))
 		write(1, "Adaptive / O(n√n)\n", 18);
 	else if (bench_data.flag == 3 || (bench_data.flag == 0
 			|| bench_data.flag == 4))
