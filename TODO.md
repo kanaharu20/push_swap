@@ -1,4 +1,6 @@
+--bench　の対応
+例えば --bench --simpleみたいに入力されたとき
 
+disorderの小数の表示ができない
 
-非完全平方数の対応
-disorder ファイル
+makefileの修正

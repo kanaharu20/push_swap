@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 19:10:26 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 10:39:36 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char *argv[])
 	t_data	bench_data;
 	t_list	*a_lst;
 	t_list	*b_lst;
-
+	int bench_flag = 0;
 	a_lst = NULL;
 	b_lst = NULL;
 	reset(&bench_data);
@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	bench_data.flag = call_algo(argv);
+	bench_data.flag = call_algo(argv,&bench_flag);
 	if (bench_data.flag != 0)
 	{
 		argv++;
@@ -103,5 +103,7 @@ int	main(int argc, char *argv[])
 	else if (bench_data.flag == 3 || (bench_data.flag == 0
 			|| bench_data.flag == 4))
 		lsd_sort(&a_lst, &b_lst, &bench_data);
+	if(bench_flag == 1)
+		bench_mark(bench_data);
 	return (0);
 }
