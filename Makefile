@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 
 SOURCE = atoi.c bench_mark.c buble_sort.c call_algo.c chunk_based_sort.c \
 		disorder.c ft_printf.c ft_printf2.c ft_printf3.c helper_func.c \
@@ -25,7 +25,7 @@ CFLAG = -Wall -Werror -Wextra
 all : $(NAME)
 
 $(NAME):$(OBJECT)
-	ar rcs $(NAME) $(OBJECT)
+	$(CC) $(CFLAG) -o $(NAME) $(OBJECT)
 
 %.o:%.c
 	$(CC) $(CFLAG) -I . -c $< -o $@
