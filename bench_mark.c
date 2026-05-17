@@ -6,19 +6,28 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 10:35:05 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 12:17:59 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 12:53:32 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	judge_bench_flag(char **argv)
+{
+	int	bench_flag;
+
+	bench_flag = 0;
+	if (strcmp_original(argv[1], "--bench"))
+		bench_flag = 1;
+	return (bench_flag);
+}
 void	write_strategy(t_data bench_data)
 {
 	if (bench_data.flag == 1 || ((bench_data.flag == 0 || bench_data.flag == 4)
-			&& bench_data.dis < 0.2))
+			&& bench_data.dis < 20))
 		write(1, "Simple / O(n²)\n", 16);
 	else if (bench_data.flag == 2 || ((bench_data.flag == 0
-				|| bench_data.flag == 4) && bench_data.dis < 0.5))
+				|| bench_data.flag == 4) && bench_data.dis < 50))
 		write(1, "Adaptive / O(n√n)\n", 18);
 	else if (bench_data.flag == 3 || (bench_data.flag == 0
 			|| bench_data.flag == 4))

@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 12:13:50 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 12:35:29 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_data
 	int				flag;
 }					t_data;
 
+int	judge_bench_flag(char **argv);
 int					atoi_original(const char *nptr, int *err_flag);
 int					detect_duplicate_values(t_list *lst, int a);
 void				ft_lstclear(t_list **lst);
@@ -51,7 +52,7 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 int					ft_isdigit(int c);
 int					error_handle(int argc, char *argv[]);
 int					strcmp_original(char *s1, char *s2);
-int					call_algo(char **argv, int *bench_flag);
+int					call_algo(char **argv, int bench_flag);
 void				bench_mark(t_data bench_mark);
 void				push(t_list **to, t_list **from);
 void				pa(t_list **a_lst, t_list **b_lst, t_data *bench_data);
@@ -77,7 +78,7 @@ void				chunk_based_sort(t_list **a_lst, t_list **b_lst,
 void				lsd_sort(t_list **a_lst, t_list **b_lst,
 						t_data *bench_data);
 int					judge(t_list **a_lst, t_list **b_lst);
-float				disorder(t_list **a_lst, t_data *bench_data);
+int					disorder(t_list **a_lst, t_data *bench_data);
 void				put_char(char c, int *ret);
 void				putstr(char *s, int *ret);
 void				put_nbr_2(int nbr, int *ret);

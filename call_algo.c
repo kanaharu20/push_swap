@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   call_func.c                                        :+:      :+:    :+:   */
+/*   call_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:14:03 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 10:37:43 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 12:31:59 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	call_algo(char **argv,int *bench_flag)
+int	call_algo(char **argv, int bench_flag)
 {
 	int	flag;
+	int	i;
 
 	flag = 0;
-	if (strcmp_original(argv[1], "--simple"))
+	if (bench_flag == 1)
+		i = 2;
+	else
+		i = 1;
+	if (strcmp_original(argv[i], "--simple"))
 		flag = 1;
-	else if (strcmp_original(argv[1], "--medium"))
+	else if (strcmp_original(argv[i], "--medium"))
 		flag = 2;
-	else if (strcmp_original(argv[1], "--complex"))
+	else if (strcmp_original(argv[i], "--complex"))
 		flag = 3;
-	else if (strcmp_original(argv[1], "--adaptive"))
+	else if (strcmp_original(argv[i], "--adaptive"))
 		flag = 4;
-	else if(strcmp_original(argv[1],"--bench"))
-		bench_flag = 1;
 	return (flag);
 }

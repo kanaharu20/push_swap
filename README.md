@@ -12,6 +12,7 @@ make re  - to remake again "push_swap.a".
 make clean	- to remove created object files.
 make fclean - to remove both created object and arcive files.
 ```
+
 ```Usage
 
 ```

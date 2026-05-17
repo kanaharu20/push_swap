@@ -12,9 +12,10 @@
 
 NAME = push_swap.a
 
-SOURCE = atoi.c buble_sort.c call_func.c chunk_based_sort.c disorder.c \
-		helper_func.c judge.c list.c lsd_sort.c main.c\
-		push.c rank.c reverse_rotate.c rotate.c swap.c
+SOURCE = atoi.c bench_mark.c buble_sort.c call_algo.c chunk_based_sort.c \
+		disorder.c ft_printf.c ft_printf2.c ft_printf3.c helper_func.c \
+		judge.c list.c lsd_sort.c main.c push.c rank.c \
+		reverse_rotate.c rotate.c swap.c
 
 OBJECT = $(SOURCE:.c=.o)
 

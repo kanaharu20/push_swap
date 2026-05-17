@@ -1,4 +1,5 @@
---bench　の対応
-例えば --bench --simpleみたいに入力されたとき
+--benchを使ったときに誤ってErrorが出力されてしまう
 
-makefileの修正
+review.mdを更新してからそのバグを直す
+
+
