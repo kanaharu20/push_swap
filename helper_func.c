@@ -43,7 +43,7 @@ int	error_handle(int argc, char *argv[])
 	while (++i < argc)
 	{
 		j = 0;
-		if (j == 0 && argv[i][j] == '-')
+		if (j == 0 && (argv[i][j] == '-' || argv[i][j] == '+'))
 			j++;
 		if (argv[i][j] == '\0')
 		{

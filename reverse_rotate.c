@@ -18,6 +18,8 @@ static void	reverse_rotate(t_list **node_ptr)
 	t_list	*last;
 	t_list	*tmp;
 
+	if (*node_ptr == NULL || (*node_ptr)->next == NULL)
+		return ;
 	first = *node_ptr;
 	last = *node_ptr;
 	tmp = *node_ptr;

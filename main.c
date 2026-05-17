@@ -77,10 +77,7 @@ int	main(int argc, char *argv[])
 	b_lst = NULL;
 	reset(&bench_data);
 	if (argc < 2)
-	{
-		write(2, "Error\n", 6);
 		return (0);
-	}
 	bench_flag = judge_bench_flag(argv);
 	bench_data.flag = call_algo(argv, bench_flag);
 	if (bench_flag == 1)

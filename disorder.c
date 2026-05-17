@@ -16,20 +16,26 @@ int	disorder(t_list **a_lst, t_data *bench_data)
 {
 	int		mistakes;
 	int		total_pairs;
-	t_list	*tmp;
+	t_list	*i;
+	t_list	*j;
 
 	mistakes = 0;
 	total_pairs = 0;
-	tmp = *a_lst;
-	while (tmp->next != NULL)
+	i = *a_lst;
+	while (i != NULL)
 	{
-		if (tmp->content > tmp->next->content)
-			mistakes++;
-		total_pairs++;
-		tmp = tmp->next;
+		j = i->next;
+		while (j != NULL)
+		{
+			total_pairs++;
+			if (i->content > j->content)
+				mistakes++;
+			j = j->next;
+		}
+		i = i->next;
 	}
 	if (total_pairs == 0)
 		return (0);
-	bench_data->dis = ((mistakes * 10000) / total_pairs);
+	bench_data->dis = (mistakes * 10000) / total_pairs;
 	return ((mistakes * 10000) / total_pairs);
 }
