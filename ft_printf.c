@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 11:19:16 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 11:37:41 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 15:31:03 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	put_unsigned_nbr_base(unsigned int nbr, char *base, int *ret)
 
 void	put_address_2(int *ret)
 {
-	if (write(1, "0x", 2) == 2)
+	if (write(2, "0x", 2) == 2)
 		*ret += 2;
 	else
 	{

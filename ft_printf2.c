@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 11:19:37 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 11:34:36 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 15:31:53 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_char(char c, int *ret)
 {
-	if (write(1, &c, 1) == 1)
+	if (write(2, &c, 1) == 1)
 		*ret += 1;
 	else
 		*ret = -1;
@@ -27,7 +27,7 @@ void	putstr(char *s, int *ret)
 	i = 0;
 	if (s == NULL)
 	{
-		if (write(1, "(null)", 6) == 6)
+		if (write(2, "(null)", 6) == 6)
 			*ret += 6;
 		else
 			*ret = -1;
@@ -35,7 +35,7 @@ void	putstr(char *s, int *ret)
 	}
 	while (s[i])
 	{
-		if (write(1, &s[i], 1) == 1)
+		if (write(2, &s[i], 1) == 1)
 			*ret += 1;
 		else
 		{
@@ -50,7 +50,7 @@ void	put_nbr_2(int nbr, int *ret)
 {
 	if (nbr == -2147483648)
 	{
-		if (write(1, "-2147483648", 11) == 11)
+		if (write(2, "-2147483648", 11) == 11)
 		{
 			*ret += 11;
 			return ;
@@ -68,7 +68,7 @@ void	put_nbr3(int nbr, int *ret)
 	char	c;
 
 	c = nbr % 10 + '0';
-	if (write(1, &c, 1) == 1)
+	if (write(2, &c, 1) == 1)
 		*ret += 1;
 	else
 	{
@@ -86,7 +86,7 @@ void	put_nbr(int nbr, int *ret)
 	}
 	if (nbr < 0)
 	{
-		if (write(1, "-", 1) == 1)
+		if (write(2, "-", 1) == 1)
 			*ret += 1;
 		else
 		{

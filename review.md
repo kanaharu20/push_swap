@@ -35,117 +35,41 @@ NULL チェック追加済み。
 ### ~~⑨ call_algo.c — `i` が未初期化~~
 `bench_flag != 0` かつ `bench_flag != 1` のとき `i` が未定義値になる問題を修正済み（2026/05/17）。
 
----
-
-## 未修正バグ（深刻な順）
-
----
-
-### ① main.c — `bench_flag` が常に 0 のままで `bench_mark` が呼ばれない
-
+### ~~⑩ main.c — `bench_flag` が常に 0 のままで `bench_mark` が呼ばれない~~
 ```c
+// 修正前
 bench_data.flag = call_algo(argv, judge_bench_flag(argv));
-//                           ↑ judge_bench_flag の戻り値は call_algo に渡すだけで
-//                             bench_flag 変数に保存されていない
+// judge_bench_flag の戻り値が bench_flag 変数に保存されていなかった
 
-...
-if (bench_flag == 1)        // bench_flag は常に 0 → bench_mark が呼ばれない
-    bench_mark(bench_data);
-```
-
-`--bench` を渡しても統計が一切出力されない。
-
-**修正:**
-```c
+// 修正後
 bench_flag = judge_bench_flag(argv);
 bench_data.flag = call_algo(argv, bench_flag);
 ```
+修正済み（2026/05/17）。
 
----
+### ~~⑪ main.c — `--bench` がある場合に `argv` がスキップされず `error_handle` がエラー終了~~
+`bench_flag == 1` と `bench_data.flag != 0` の両方で `argv++; argc--` するよう修正済み（2026/05/17）。
 
-### ② main.c — `--bench` がある場合に `argv` がスキップされず `error_handle` がエラー終了
+### ~~⑫ 閾値誤り — adaptive 戦略が機能しない~~
+`disorder` の戻り値スケールを `mistakes * 10000 / total_pairs`（0〜10000）に変更。
+main.c・bench_mark.c の閾値を `2000`（20%）・`5000`（50%）に統一済み（2026/05/17）。
+`bench_data->dis` への float 代入も整数演算に修正。
 
-```c
-bench_data.flag = call_algo(argv, judge_bench_flag(argv));
-if (bench_data.flag != 0)   // --bench のみ渡した場合 flag==0 → argv がスキップされない
-{
-    argv++;
-    argc--;
-}
-if (error_handle(argc, argv) == 0)  // argv[1]=="--bench" → 整数チェック失敗 → Error
-    return (0);
-```
-
-`./push_swap --bench 3 1 2` を実行すると `Error` が出力されて終了する。
-
-`--bench` と algo フラグ（`--simple` 等）が同時に使われる場合も、スキップロジックが 1 引数分しか対応していないため壊れる。
-
-**修正方針:** `judge_bench_flag` と `call_algo` で検出したフラグ引数の数だけ `argv`/`argc` をスキップする。
-
----
-
-### ③ disorder.c — 乱れ度の閾値比較が常に失敗（adaptive 戦略が機能しない）
-
-`disorder` は整数パーセンテージ（0〜100）を返し、`bench_data.dis` に格納される。
-しかし main.c と bench_mark.c の比較閾値は `0.2`・`0.5` のまま：
-
-```c
-if (... && bench_data.dis < 0.2)   // int の 0 < 0.2 → dis==0 のときだけ真
-    buble_sort(...);
-else if (... && bench_data.dis < 0.5)  // 同上
-    chunk_based_sort(...);
-else
-    lsd_sort(...);   // ← 実質ほぼ常にここに来る
-```
-
-`--adaptive` を指定しても disorder が 0（完全ソート済み）でない限り常に `lsd_sort` が使われ、
-bubble sort・chunk sort は選択されない。
-
-**修正:** 閾値を `20` と `50` に変更する。
-```c
-if (... && bench_data.dis < 20)
-    buble_sort(...);
-else if (... && bench_data.dis < 50)
-    chunk_based_sort(...);
-```
-`bench_mark.c` の `write_strategy` 内の閾値も同様に修正が必要。
-
-また `disorder` 関数内の `bench_data->dis = ((float)mistakes/total_pairs)` は
-`int` フィールドに代入するため常に 0 になる（戻り値で上書きされるため実害は出ていないが、
-混乱の原因になるので削除すべき）。
-
----
-
-### ④ disorder.c — 要素数 1 のときゼロ除算（未定義動作）
-
-```c
-while (tmp->next != NULL)   // 要素 1 個だと実行されず total_pairs == 0
-    ...
-bench_data->dis = ((float)mistakes / total_pairs);  // 0/0 → float: NaN
-return ((mistakes * 100) / total_pairs);             // 0/0 → int: 未定義動作
-```
-
-**修正:**
+### ~~⑬ disorder.c — 要素数 1 のときゼロ除算（未定義動作）~~
 ```c
 if (total_pairs == 0)
     return (0);
 ```
+ガード追加済み（2026/05/17）。
+
+### ~~⑭ bench_mark.c — `write_strategy` の出力先が stdout~~
+全 `write(1, ...)` を `write(2, ...)` に修正済み（2026/05/17）。
 
 ---
 
-### ⑤ bench_mark.c — `--bench` の出力先が stdout（仕様は stderr）
+## 未修正バグ
 
-仕様書（push_swap.md VI.5）では `--bench` 出力は **stderr** に表示すると規定されている。
-`bench_mark` は `ft_printf`（stdout）と `write(1, ...)` を使用しており、
-操作列（stdout）と混在して `checker` によるパイプ処理が壊れる。
-
-```bash
-# 期待: checker が操作列のみを受け取る
-./push_swap --bench 3 1 2 | ./checker 3 1 2
-# 実際: bench 出力も checker に流れて KO になる
-```
-
-**修正:** `ft_printf` の代わりに `write(2, ...)` で stderr に出力する。
+なし。
 
 ---
 
@@ -154,12 +78,12 @@ if (total_pairs == 0)
 | ファイル | 状態 |
 |----------|------|
 | push_swap.h | OK |
-| main.c | `bench_flag` 未設定・`--bench` スキップ漏れ・閾値誤り |
+| main.c | OK |
 | call_algo.c | OK |
-| bench_mark.c | 閾値誤り・出力先が stdout |
+| bench_mark.c | OK |
 | rank.c | OK |
 | helper_func.c | OK |
-| disorder.c | 要素数 1 でゼロ除算・`dis` への float 代入が不要 |
+| disorder.c | OK |
 | judge.c | OK |
 | list.c | OK |
 | push.c | OK |
