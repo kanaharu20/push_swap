@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 10:35:05 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 15:01:59 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/17 15:18:27 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,24 @@ int	judge_bench_flag(char **argv)
 }
 void	write_strategy(t_data bench_data)
 {
-	if (bench_data.flag == 1 || ((bench_data.flag == 0 || bench_data.flag == 4)
-			&& bench_data.dis < 2000))
+	if (bench_data.flag == 1)
 		write(1, "Simple / O(n²)\n", 16);
-	else if (bench_data.flag == 2 || ((bench_data.flag == 0
-				|| bench_data.flag == 4) && bench_data.dis < 5000))
-		write(1, "Adaptive / O(n√n)\n", 18);
-	else if (bench_data.flag == 3 || (bench_data.flag == 0
-			|| bench_data.flag == 4))
+	else if (bench_data.flag == 2)
+		write(1, "Medium / O(n√n)\n", 18);
+	else if (bench_data.flag == 3)
 		write(1, "Complex / O(n log n)\n", 21);
+	else
+	{
+		write(1, "Adaptive / ", 11);
+		if (bench_data.dis < 2000)
+			write (1, "O(n²)\n", 7);
+		else if (bench_data.dis < 5000)
+			write (1, "O(n√n)\n", 9);
+		else
+			write (1, "O(n log n)\n", 11);
+	}
 }
+
 void	bench_mark(t_data bench_data)
 {
 	int total = bench_data.pa_cnt + bench_data.pb_cnt + bench_data.ra_cnt
@@ -41,6 +49,8 @@ void	bench_mark(t_data bench_data)
 		+ bench_data.sb_cnt + bench_data.ss_cnt;
 	ft_printf("[bench] disorder:  ");
 	ft_printf("%d.", bench_data.dis / 100);
+	if (bench_data.dis % 100 < 10)
+		write (1, "0", 1);
 	ft_printf("%d%%\n", bench_data.dis % 100);
 	ft_printf("[bench] strategy:  ");
 	write_strategy(bench_data);
