@@ -31,10 +31,12 @@ void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 		t_data *bench_data)
 {
 	int		rotate_count;
+	int		b_size;
 	t_list	*lst;
 
 	while (count >= 0)
 	{
+		b_size = lst_count(*b_lst);
 		rotate_count = 0;
 		lst = *b_lst;
 		while (lst != NULL)
@@ -44,10 +46,16 @@ void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 			rotate_count++;
 			lst = lst->next;
 		}
-		while (rotate_count > 0)
+		if (rotate_count <= b_size / 2)
 		{
-			rb(b_lst, bench_data);
-			rotate_count--;
+			while (rotate_count-- > 0)
+				rb(b_lst, bench_data);
+		}
+		else
+		{
+			rotate_count = b_size - rotate_count;
+			while (rotate_count-- > 0)
+				rrb(b_lst, bench_data);
 		}
 		pa(a_lst, b_lst, bench_data);
 		count--;

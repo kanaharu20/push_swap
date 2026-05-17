@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 15:44:15 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/17 16:16:24 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ int	main(int argc, char *argv[])
 		lsd_sort(&a_lst, &b_lst, &bench_data);
 	if (bench_flag == 1)
 		bench_mark(bench_data);
+	ft_lstclear(&a_lst);
 	return (0);
 }
