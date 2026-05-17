@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 10:39:36 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 12:00:54 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	reset(t_data *bench_data)
 	bench_data->sa_cnt = 0;
 	bench_data->sb_cnt = 0;
 	bench_data->ss_cnt = 0;
-	bench_data->total = 0;
 }
 
 int	main(int argc, char *argv[])

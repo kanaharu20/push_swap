@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 10:35:05 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 11:34:47 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 12:04:05 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	bench_mark(t_data bench_data)
 		+ bench_data.rb_cnt + bench_data.rr_cnt + bench_data.rra_cnt
 		+ bench_data.rrb_cnt + bench_data.rrr_cnt + bench_data.sa_cnt
 		+ bench_data.sb_cnt + bench_data.ss_cnt;
-	ft_printf("[bench] disorder:  %f%%", bench_data.dis); //%f の追加が必要
+	ft_printf("[bench] disorder:  ", bench_data.dis); //%f の追加が必要
 	ft_printf("[bench] strategy:  ");
 	write_strategy(bench_data);
 	ft_printf("[bench] total_ops: %d\n", total);
@@ -40,5 +40,5 @@ void	bench_mark(t_data bench_data)
 	ft_printf("[bench] ra: %d  rb: %d  rr: %d  rra: %d  rrb: %d  rrr: %d\n",
 		bench_data.ra_cnt, bench_data.rb_cnt, bench_data.rr_cnt,
 		bench_data.rra_cnt, bench_data.rrb_cnt, bench_data.rrr_cnt);
-	
+
 }
