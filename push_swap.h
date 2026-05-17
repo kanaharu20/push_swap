@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 11:34:36 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 12:13:50 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_data
 	int				rra_cnt;
 	int				rrb_cnt;
 	int				rrr_cnt;
-	float			dis;
+	int				dis;
 	int				flag;
 }					t_data;
 
