@@ -84,6 +84,15 @@ if (total_pairs == 0)
 `rotate_count > b_size / 2` のとき `rrb` を `b_size - rotate_count` 回使うよう修正済み（2026/05/17）。
 n=500 で最悪 100,000+ ops → 約 8,300 ops に改善。
 
+### ~~⑲ buble_sort — sa+ra 方式で操作数が O(n²) 相当~~
+最小値を sa/ra で先頭に持ってくる方式のため n=100 で最悪 ~10,000 ops。
+`find_min_pos` で最小値の位置を先に調べ、`ra` か `rra` の短い方で移動する
+Selection Sort 方式に変更済み（2026/05/17）。n=100 で **1,509 ops**（約 6〜7 倍改善）。
+目的要素が b の下半分にある場合でも常に `rb`（上から）で回していたため、
+最悪ケースで総操作数が O(n²) になっていた。
+`rotate_count > b_size / 2` のとき `rrb` を `b_size - rotate_count` 回使うよう修正済み（2026/05/17）。
+n=500 で最悪 100,000+ ops → 約 8,300 ops に改善。
+
 ---
 
 ## 未修正バグ

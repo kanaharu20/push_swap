@@ -12,38 +12,51 @@
 
 #include "push_swap.h"
 
-static int	cmp(int former, int latter)
+static int	find_min_pos(t_list *lst)
 {
-	if (former < latter)
-		return (1);
-	return (0);
+	int		min_rank;
+	int		min_pos;
+	int		pos;
+	t_list	*tmp;
+
+	min_rank = lst->rank;
+	min_pos = 0;
+	pos = 0;
+	tmp = lst->next;
+	while (tmp != NULL)
+	{
+		pos++;
+		if (tmp->rank < min_rank)
+		{
+			min_rank = tmp->rank;
+			min_pos = pos;
+		}
+		tmp = tmp->next;
+	}
+	return (min_pos);
 }
 
-void	buble_sort(t_list **a_lst, t_list **b_lst,t_data *bench_data)
+void	buble_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
-	t_list	*lst;
-	size_t	i;
-	size_t	cnt_lst;
+	int	n;
+	int	min_pos;
 
-	lst = *a_lst;
-	cnt_lst = 0;
-	while (lst->next != NULL)
+	n = lst_count(*a_lst);
+	while (n > 0)
 	{
-		lst = lst->next;
-		cnt_lst++;
-	}
-	while (cnt_lst)
-	{
-		i = 0;
-		while (++i <= cnt_lst)
+		min_pos = find_min_pos(*a_lst);
+		if (min_pos <= n / 2)
+			while (min_pos-- > 0)
+				ra(a_lst, bench_data);
+		else
 		{
-			if (cmp((*a_lst)->content, (*a_lst)->next->content))
-				sa(a_lst,bench_data);
-			ra(a_lst,bench_data);
+			min_pos = n - min_pos;
+			while (min_pos-- > 0)
+				rra(a_lst, bench_data);
 		}
-		pb(a_lst, b_lst,bench_data);
-		cnt_lst--;
+		pb(a_lst, b_lst, bench_data);
+		n--;
 	}
 	while (*b_lst != NULL)
-		pa(a_lst, b_lst,bench_data);
+		pa(a_lst, b_lst, bench_data);
 }
