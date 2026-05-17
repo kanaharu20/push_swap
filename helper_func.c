@@ -45,6 +45,11 @@ int	error_handle(int argc, char *argv[])
 		j = 0;
 		if (j == 0 && argv[i][j] == '-')
 			j++;
+		if (argv[i][j] == '\0')
+		{
+			write(2, "Error\n", 6);
+			return (0);
+		}
 		if (argv[i][j] == '0' && argv[i][j + 1] != '\0')
 		{
 			write(2, "Error\n", 6);

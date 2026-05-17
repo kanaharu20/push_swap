@@ -67,90 +67,22 @@ if (total_pairs == 0)
 
 ---
 
-## 未修正バグ（深刻な順）
+### ~~⑮ rotate.c — 1 要素リストの `rotate` でポインタが NULL になる（要素消失）~~
+
+`lsd_sort` で `ra` が 1 要素リストに対して呼ばれると `a_lst = NULL` になり要素が消失。
+先頭に `if (*node_ptr == NULL || (*node_ptr)->next == NULL) return ;` を追加済み（2026/05/17）。
+
+### ~~⑯ call_algo.c — `--bench` のみ渡した場合に NULL 参照でクラッシュ~~
+`argv[i] == NULL` チェックを追加、`return (0)` で安全に終了するよう修正済み（2026/05/17）。
+
+### ~~⑰ helper_func.c — `"-"` や `""` が有効な整数として通過する~~
+符号スキップ後に `argv[i][j] == '\0'` チェックを追加し Error を出力するよう修正済み（2026/05/17）。
 
 ---
 
-### ① rotate.c — 1 要素リストの `rotate` でポインタが NULL になる（要素消失）
+## 未修正バグ
 
-```c
-second = first->next;   // 1 要素のとき second = NULL
-while (tmp->next != NULL)   // ループ不実行、tmp = first のまま
-    tmp = tmp->next;
-tmp->next = first;      // first->next = first（自己ループ）
-first->next = NULL;     // first->next = NULL（元に戻るだけ）
-*node_ptr = second;     // *node_ptr = NULL → リストが消える！
-```
-
-`lsd_sort` でビットパスの最後に `ra` が 1 要素リストに対して呼ばれると
-その要素がメモリリークして `a_lst = NULL` になる。
-
-**具体的に壊れるケース:** n=3 で `a = [rank0, rank2, rank1]`、bit=0 のパス：
-- rank0（bit=0）→ pb
-- rank2（bit=0）→ pb
-- rank1（bit=1）→ **ra（1 要素）→ a_lst = NULL、rank1 消失**
-
-結果: ソートが正しくない出力を返す。
-
-**修正:**
-```c
-static void rotate(t_list **node_ptr)
-{
-    if (*node_ptr == NULL || (*node_ptr)->next == NULL)
-        return;
-    // 既存のロジック
-}
-```
-
----
-
-### ② call_algo.c — `--bench` のみ渡した場合に NULL 参照でクラッシュ
-
-```c
-if (bench_flag == 1)
-    i = 2;          // argv[2] を参照しようとする
-...
-if (strcmp_original(argv[i], "--simple"))   // argv[2] == NULL → クラッシュ
-```
-
-`./push_swap --bench` (argc=2) のとき：
-- `argc < 2` チェックを通過
-- `bench_flag = 1` → `i = 2`
-- `argv[2]` は NULL → `strcmp_original` 内で NULL デリファレンス → segfault
-
-**修正:** `call_algo` の先頭で `argv[i]` が NULL でないことを確認する。
-```c
-if (argv[i] == NULL)
-    return (0);
-```
-
----
-
-### ③ helper_func.c — `"-"` や `""` が有効な整数として通過する
-
-```c
-if (j == 0 && argv[i][j] == '-')
-    j++;
-// ここで argv[i][j] が '\0' のままでも while ループに進む
-while (argv[i][j])           // '\0' → 即終了
-{
-    if (ft_isdigit(argv[i][j]) == 0)
-        ...
-}
-return (1);  // 数字が 0 個でも「OK」
-```
-
-`./push_swap - 5 3` → `"-"` が 0 として扱われ、エラーなくソートされる。
-`./push_swap ""` → `""` が 0 として扱われる。
-
-**修正:** 符号スキップ後に最低 1 桁の数字があるか確認する。
-```c
-if (argv[i][j] == '\0')
-{
-    write(2, "Error\n", 6);
-    return (0);
-}
-```
+なし。
 
 ---
 
@@ -160,18 +92,18 @@ if (argv[i][j] == '\0')
 |----------|------|
 | push_swap.h | OK |
 | main.c | OK |
-| call_algo.c | `--bench` のみ渡した場合に NULL 参照 |
+| call_algo.c | OK |
 | bench_mark.c | OK |
 | rank.c | OK |
-| helper_func.c | `"-"` や `""` が有効として通過 |
+| helper_func.c | OK |
 | disorder.c | OK |
 | judge.c | OK |
 | list.c | OK |
 | push.c | OK |
 | swap.c | OK |
-| rotate.c | 1 要素ローテートでポインタ消失 |
+| rotate.c | OK |
 | reverse_rotate.c | OK |
-| lsd_sort.c | rotate バグの影響を受ける |
+| lsd_sort.c | OK |
 | buble_sort.c | OK |
 | chunk_based_sort.c | OK |
 | atoi.c | OK |

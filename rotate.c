@@ -18,6 +18,8 @@ static void	rotate(t_list **node_ptr)
 	t_list	*second;
 	t_list	*tmp;
 
+	if (*node_ptr == NULL || (*node_ptr)->next == NULL)
+		return ;
 	tmp = *node_ptr;
 	first = *node_ptr;
 	second = first->next;
