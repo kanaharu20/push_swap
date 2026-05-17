@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 15:02:14 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/17 15:44:15 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ int	main(int argc, char *argv[])
 		argc--;
 	}
 	if (error_handle(argc, argv) == 0)
-		return (0);
+		return (1);
 	a_lst = make_a_lst(&a_lst, argc, argv);
 	if (!a_lst)
-		return (0);
+		return (1);
 	make_rank(&a_lst);
 	bench_data.dis = disorder(&a_lst, &bench_data);
 	if (bench_data.flag == 1 || ((bench_data.flag == 0 || bench_data.flag == 4)
