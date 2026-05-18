@@ -42,7 +42,7 @@ void	buble_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 	int	min_pos;
 
 	n = lst_count(*a_lst);
-	while (n > 0)
+	while (n > 1)
 	{
 		min_pos = find_min_pos(*a_lst);
 		if (min_pos <= n / 2)

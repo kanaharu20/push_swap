@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 12:35:29 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/18 13:20:31 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ typedef struct s_data
 	int				rrb_cnt;
 	int				rrr_cnt;
 	int				dis;
+	int				algo;
 	int				flag;
 }					t_data;
 
-int	judge_bench_flag(char **argv);
+int					judge_bench_flag(char **argv);
 int					atoi_original(const char *nptr, int *err_flag);
 int					detect_duplicate_values(t_list *lst, int a);
 void				ft_lstclear(t_list **lst);

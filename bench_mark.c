@@ -23,11 +23,11 @@ int	judge_bench_flag(char **argv)
 }
 void	write_strategy(t_data bench_data)
 {
-	if (bench_data.flag == 1)
+	if (bench_data.algo == 1)
 		write(2, "Simple / O(n²)\n", 16);
-	else if (bench_data.flag == 2)
+	else if (bench_data.algo == 2)
 		write(2, "Medium / O(n√n)\n", 18);
-	else if (bench_data.flag == 3)
+	else if (bench_data.algo == 3)
 		write(2, "Complex / O(n log n)\n", 21);
 	else
 	{
