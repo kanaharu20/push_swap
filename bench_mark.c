@@ -21,6 +21,7 @@ int	judge_bench_flag(char **argv)
 		bench_flag = 1;
 	return (bench_flag);
 }
+
 void	write_strategy(t_data bench_data)
 {
 	if (bench_data.algo == 1)

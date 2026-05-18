@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 10:57:04 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/18 13:27:16 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:43:43 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ int	lst_count(t_list *lst)
 	return (count);
 }
 
+int	strcmp_original(char *s1, char *s2)
+{
+	int	idx;
+
+	idx = 0;
+	while (s2[idx] && s1[idx] == s2[idx])
+		idx++;
+	if (s1[idx] == s2[idx])
+		return (1);
+	return (0);
+}
+
 int	ft_isdigit(int c)
 {
 	if ('0' <= c && c <= '9')
@@ -34,35 +46,37 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
+static int	validate_arg(char *arg)
+{
+	int	j;
+
+	j = 0;
+	if (arg[j] == '-' || arg[j] == '+')
+		j++;
+	if (arg[j] == '\0')
+		return (0);
+	if (arg[j] == '0' && arg[j + 1] != '\0')
+		return (0);
+	while (arg[j])
+	{
+		if (ft_isdigit(arg[j]) == 0)
+			return (0);
+		j++;
+	}
+	return (1);
+}
+
 int	error_handle(int argc, char *argv[])
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (++i < argc)
 	{
-		j = 0;
-		if (j == 0 && (argv[i][j] == '-' || argv[i][j] == '+'))
-			j++;
-		if (argv[i][j] == '\0')
+		if (validate_arg(argv[i]) == 0)
 		{
 			write(2, "Error\n", 6);
 			return (0);
-		}
-		if (argv[i][j] == '0' && argv[i][j + 1] != '\0')
-		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
-		while (argv[i][j])
-		{
-			if (ft_isdigit(argv[i][j]) == 0)
-			{
-				write(2, "Error\n", 6);
-				return (0);
-			}
-			j++;
 		}
 	}
 	return (1);

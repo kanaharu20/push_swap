@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/18 13:27:24 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:43:13 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,6 @@ static t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
 		i++;
 	}
 	return (*a_lst);
-}
-
-int	strcmp_original(char *s1, char *s2)
-{
-	int	idx;
-
-	idx = 0;
-	while (s2[idx] && s1[idx] == s2[idx])
-		idx++;
-	if (s1[idx] == s2[idx])
-		return (1);
-	return (0);
 }
 
 void	reset(t_data *bench_data)

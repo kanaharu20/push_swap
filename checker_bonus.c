@@ -88,7 +88,8 @@ static int	run_checker(t_list **a_lst, t_list **b_lst)
 {
 	char	*line;
 
-	while ((line = get_line_checker()) != NULL)
+	line = get_line_checker();
+	while (line != NULL)
 	{
 		if (exec_op_checker(line, a_lst, b_lst) == -1)
 		{
@@ -99,6 +100,7 @@ static int	run_checker(t_list **a_lst, t_list **b_lst)
 			return (-1);
 		}
 		free(line);
+		line = get_line_checker();
 	}
 	return (0);
 }
