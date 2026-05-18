@@ -22,7 +22,7 @@ int	judge_bench_flag(char **argv)
 	return (bench_flag);
 }
 
-void	write_strategy(t_data bench_data)
+static void	write_strategy(t_data bench_data)
 {
 	if (bench_data.algo == 1)
 		write(2, "Simple / O(n²)\n", 16);

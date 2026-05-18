@@ -42,7 +42,7 @@ t_list	*ft_lstnew(int content)
 	return (node_new);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+static t_list	*ft_lstlast(t_list *lst)
 {
 	while (lst->next != NULL)
 		lst = lst->next;
@@ -57,4 +57,19 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	}
 	ft_lstlast(*lst)->next = new;
+}
+
+int	lst_count(t_list *lst)
+{
+	int		count;
+	t_list	*tmp;
+
+	count = 0;
+	tmp = lst;
+	while (tmp != NULL)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	return (count);
 }

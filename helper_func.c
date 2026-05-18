@@ -12,21 +12,6 @@
 
 #include "push_swap.h"
 
-int	lst_count(t_list *lst)
-{
-	int		count;
-	t_list	*tmp;
-
-	count = 0;
-	tmp = lst;
-	while (tmp != NULL)
-	{
-		count++;
-		tmp = tmp->next;
-	}
-	return (count);
-}
-
 int	strcmp_original(char *s1, char *s2)
 {
 	int	idx;
@@ -39,7 +24,7 @@ int	strcmp_original(char *s1, char *s2)
 	return (0);
 }
 
-int	ft_isdigit(int c)
+static int	ft_isdigit(int c)
 {
 	if ('0' <= c && c <= '9')
 		return (1);

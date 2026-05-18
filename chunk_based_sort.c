@@ -61,7 +61,7 @@ static void	rotate_to_rank(t_list **b_lst, int count, t_data *bench_data)
 	do_rotate_b(b_lst, rotate_count, b_size, bench_data);
 }
 
-void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
+static void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 		t_data *bench_data)
 {
 	while (count >= 0)

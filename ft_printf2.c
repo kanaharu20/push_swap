@@ -46,7 +46,7 @@ void	putstr(char *s, int *ret)
 	}
 }
 
-void	put_nbr_2(int nbr, int *ret)
+static void	put_nbr_2(int nbr, int *ret)
 {
 	if (nbr == -2147483648)
 	{
@@ -63,7 +63,7 @@ void	put_nbr_2(int nbr, int *ret)
 	}
 }
 
-void	put_nbr3(int nbr, int *ret)
+static void	put_nbr3(int nbr, int *ret)
 {
 	char	c;
 
