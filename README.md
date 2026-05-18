@@ -27,6 +27,7 @@ shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --bench --simple $(cat args.txt)
 # Resources
 ## Website
 [Wikipedia of Analysis of algorithms](https://en.wikipedia.org/wiki/Analysis_of_algorithms)
+[bit演算について](https://atcoder.jp/contests/APG4b/tasks/APG4b_ac)
 
 ## AI
 
@@ -76,5 +77,10 @@ Claude code(Anthropic) : 主にgithubの使い方、アルゴリズムの理解
 
 
 kyonahaの貢献
+chunk sort, lsd sortの考案と雛形の作成。
+checkerの作成。
+ra, rbなどの各操作の作成。
+norminetteの回避。
+makefileの修正。
 
 hkanamitの貢献
