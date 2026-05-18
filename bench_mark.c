@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bench_mark.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 10:35:05 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 15:30:52 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/18 13:26:26 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,26 @@ void	write_strategy(t_data bench_data)
 	{
 		write(2, "Adaptive / ", 11);
 		if (bench_data.dis < 2000)
-			write (2, "O(n²)\n", 7);
+			write(2, "O(n²)\n", 7);
 		else if (bench_data.dis < 5000)
-			write (2, "O(n√n)\n", 9);
+			write(2, "O(n√n)\n", 9);
 		else
-			write (2, "O(n log n)\n", 11);
+			write(2, "O(n log n)\n", 11);
 	}
 }
 
 void	bench_mark(t_data bench_data)
 {
-	int total = bench_data.pa_cnt + bench_data.pb_cnt + bench_data.ra_cnt
+	int	total;
+
+	total = bench_data.pa_cnt + bench_data.pb_cnt + bench_data.ra_cnt
 		+ bench_data.rb_cnt + bench_data.rr_cnt + bench_data.rra_cnt
 		+ bench_data.rrb_cnt + bench_data.rrr_cnt + bench_data.sa_cnt
 		+ bench_data.sb_cnt + bench_data.ss_cnt;
 	ft_printf("[bench] disorder:  ");
 	ft_printf("%d.", bench_data.dis / 100);
 	if (bench_data.dis % 100 < 10)
-		write (2, "0", 1);
+		write(2, "0", 1);
 	ft_printf("%d%%\n", bench_data.dis % 100);
 	ft_printf("[bench] strategy:  ");
 	write_strategy(bench_data);

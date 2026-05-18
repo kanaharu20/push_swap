@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 12:10:34 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/18 12:10:37 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:27:01 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	root(int lst_count)
 	}
 	return (r);
 }
-
 
 void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 		t_data *bench_data)
@@ -64,10 +63,10 @@ void	chunk_based_sort2(t_list **a_lst, t_list **b_lst, int count,
 
 void	chunk_based_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
-	int		count;
-	int		remaining;
-	int		i;
-	int		r;
+	int	count;
+	int	remaining;
+	int	i;
+	int	r;
 
 	i = 0;
 	count = lst_count(*a_lst);

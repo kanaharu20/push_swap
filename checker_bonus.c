@@ -6,23 +6,11 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 12:11:20 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/18 12:11:22 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:26:34 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-
-int	strcmp_original(char *s1, char *s2)
-{
-	int	idx;
-
-	idx = 0;
-	while (s2[idx] && s1[idx] == s2[idx])
-		idx++;
-	if (s1[idx] == s2[idx])
-		return (1);
-	return (0);
-}
 
 static t_list	*make_stack_checker(int argc, char *argv[])
 {
@@ -37,8 +25,8 @@ static t_list	*make_stack_checker(int argc, char *argv[])
 	{
 		err_flag = 0;
 		tmp = ft_lstnew(atoi_original(argv[i], &err_flag));
-		if (!tmp || err_flag == -1
-			|| detect_duplicate_values(a_lst, tmp->content) == -1)
+		if (!tmp || err_flag == -1 || detect_duplicate_values(a_lst,
+				tmp->content) == -1)
 		{
 			free(tmp);
 			ft_lstclear(&a_lst);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/14 17:28:12 by hkanamit          #+#    #+#              #
-#    Updated: 2026/05/17 00:00:00 by hkanamit         ###   ########.fr        #
+#    Updated: 2026/05/18 13:27:26 by kyonaha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

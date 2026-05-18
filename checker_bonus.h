@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 12:11:09 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/18 12:11:10 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/18 13:26:36 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	rra_checker(t_list **a_lst);
 void	rrb_checker(t_list **b_lst);
 void	rrr_checker(t_list **a_lst, t_list **b_lst);
 char	*get_line_checker(void);
+int		strcmp_original(char *s1, char *s2);
 
 #endif
