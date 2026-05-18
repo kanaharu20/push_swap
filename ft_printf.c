@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 11:19:16 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 15:31:03 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/18 13:33:28 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void	output_count(const char format, va_list args, int *ret)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list args;
-	int ret;
-	int i;
+	va_list	args;
+	int		ret;
+	int		i;
 
 	i = 0;
 	va_start(args, format);

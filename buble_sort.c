@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buble_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 13:43:24 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/15 15:42:12 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/18 13:26:29 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	buble_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 	int	min_pos;
 
 	n = lst_count(*a_lst);
-	while (n > 0)
+	while (n > 1)
 	{
 		min_pos = find_min_pos(*a_lst);
 		if (min_pos <= n / 2)
