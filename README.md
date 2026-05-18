@@ -1,29 +1,80 @@
 *This project has been created as part of the 42 curriculum by hkanamit ,kyonaha.*
 
 # Description
-
+この課題の目標は効率の良いアルゴリズムの実装方法、また今までに習得したあらゆるc言語についての知識を応用する方法を学ぶこと。
+全体的に、関数が多くなるのでそれらの接続また管理が大変になる。また、課題要件も多く計画的に取り組む必要がある。
+ペア課題なのでコミュニケーションを取りながら実装を分担したり議論を交わしたり、教え合いをしたりしてペアワークを学んだ。
 # Instructions
 ## Makefile
-in terminal you can make arcive object files.
-these are useful Makefile commands.
+以下のメイクファイルコマンドでソースファイルをコンパイルできる。
 ```Makefile
-make  - to make arcive life named "push_swap.a".
-make re  - to remake again "push_swap.a".
-make clean	- to remove created object files.
-make fclean - to remove both created object and arcive files.
+make  - オブジェクトファイルをコンパイルして実行ファイル push_swap を生成する。
+make re  - オブジェクトファイルを再コンパイルしてそれらから新たに実行ファイルを再生成する。
+make clean	- コンパイルされたオブジェクトファイルを削除する。
+make fclean - コンパイルされたオブジェクトファイル及び実行ファイルを削除する。
 ```
-
-```Usage
-
+## 実行例
+以下のコマンドで実行テストが可能。
+0~999の自然数から重複なく無作為に500個選ばれ、args.txtに一行づつ書き込まれる。それらをpush_swapの引数として渡す。
 ```
-
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap $(cat args.txt)
+```
+この際、用意されたフラグをつけることも可能。
+```
+shuf -i 0-9999 -n 500 > args.txt ; ./push_swap --bench --simple $(cat args.txt)
+```
 
 # Resources
 ## Website
+[Wikipedia of Analysis of algorithms](https://en.wikipedia.org/wiki/Analysis_of_algorithms)
+
 ## AI
+
+Claude code(Anthropic) : 主にgithubの使い方、アルゴリズムの理解
 ## Ask friends
+
+幸運にも周囲にすでにこの課題を突破している人がいたのでアドバイスをもらった。
 # Explanation and justification of the algorithms selected
+我々が選択したソートアルゴリズムは以下の3つである。
+## バブルソート
+```
+一言でいうと隣り合う要素の大小を比較しながら整列させるソートアルゴリズム。
 
-## Contribution of kyonaha
+全ての要素に関して、隣接する要素と比較し順序が逆であれば入れ替える。これを要素数-1回繰り返すことでソートを行う。
+アルゴリズムが単純で実装も容易である一方、最悪時間計算量は O(n^2) と遅いため、一般にはマージソートやヒープソートなど、より最悪時間計算量の小さな（従って高速な）方法が利用される。
+```
+## √n個に分かれるチャンクに基づくソート
+```
+一言でいうと要素全体を総素数をnとし√n個のチャンクに分割して整列させるソートアルゴリズム。
 
-## Contribution of hkanamit
+要素数nに対して√n個のチャンクを用意してそれらに属する√n個の要素を最小の要素が属するチャンクのメンバーから順にはじめから見つかった順にチャンクに入れ分割。
+その後、チャンク内の要素を大きい順に探す。要素がなくなり次第終了し、次のチャンクに移る。これを全要素に適用されるまで続ける。
+この際、要素は座標圧縮された形で扱われる。
+座標圧縮とは、たとえば渡された要素が2 5 8 9 20 だとするとこれらに大きさ順のランクをつけることである。
+この場合、ランキングは0~4まで存在する。
+アルゴリズムはバブルソートと同様に感覚的にわかりやすく、最悪計算量はO(n√n)とバブルソートよりも高速である。
+```
+　
+## 最下位桁 基数ソート
+```
+一言でいうと要素全体を桁数ごとに分割し整列させるソートアルゴリズム。
+
+ここでいう、桁数とは二進数における桁数のことである。1bitごとに最下位から分割する。
+例えば、渡された要素が1 0 5 4 6 だったときこれらは順に二進数に以下のように変換される。
+
+1 -> 10
+0 -> 0
+5 -> 101
+4 -> 100
+6 -> 110
+
+はじめ、グループには1桁目が0の要素を分ける。そしてそれらをもとのグルーブの前方に戻す。
+次に、グループには2桁目が0の要素を分ける。そしてそれらをもとのグループの前方に戻す。
+この工程を座標圧縮された最高位の要素に達するまで繰り返す。
+アルゴリズムは少し複雑で感覚的ではないが、最悪計算量はO(nlogn)とこれらのソートアルゴリズムの中で最速である。
+```
+
+
+kyonahaの貢献
+
+hkanamitの貢献
