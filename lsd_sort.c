@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 16:57:10 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/15 16:16:28 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/17 17:54:47 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static int	bit_length(int size)
 	return (bits);
 }
 
-void	lsd_sort(t_list **a_lst, t_list **b_lst,t_data *bench_data)
+void	lsd_sort(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
 	int	bits;
 	int	bit;
 	int	b_count;
 	int	i;
-	int size;
+	int	size;
 
 	size = lst_count(*a_lst);
 	bits = bit_length(size);
@@ -40,16 +40,16 @@ void	lsd_sort(t_list **a_lst, t_list **b_lst,t_data *bench_data)
 		while (i < size)
 		{
 			if (((*a_lst)->rank >> bit) & 1)
-				ra(a_lst,bench_data);
+				ra(a_lst, bench_data);
 			else
 			{
-				pb(a_lst, b_lst,bench_data);
+				pb(a_lst, b_lst, bench_data);
 				b_count++;
 			}
 			i++;
 		}
 		while (b_count-- > 0)
-			pa(a_lst, b_lst,bench_data);
+			pa(a_lst, b_lst, bench_data);
 		bit++;
 	}
 }

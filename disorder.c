@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 11:10:55 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 15:29:08 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/17 17:36:08 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	disorder(t_list **a_lst, t_data *bench_data)
 {
-	int		mistakes;
-	int		total_pairs;
+	size_t	mistakes;
+	size_t	total_pairs;
 	t_list	*i;
 	t_list	*j;
 
@@ -36,6 +36,6 @@ int	disorder(t_list **a_lst, t_data *bench_data)
 	}
 	if (total_pairs == 0)
 		return (0);
-	bench_data->dis = (mistakes * 10000) / total_pairs;
-	return ((mistakes * 10000) / total_pairs);
+	bench_data->dis = (int)((mistakes * 10000) / total_pairs);
+	return ((int)((mistakes * 10000) / total_pairs));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/17 00:00:00 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/17 00:00:00 by hkanamit         ###   ########.fr       */
+/*   Created: 2026/05/18 12:11:20 by kyonaha           #+#    #+#             */
+/*   Updated: 2026/05/18 12:11:22 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
