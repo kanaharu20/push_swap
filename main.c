@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 16:01:59 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 16:36:34 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,10 @@ int	main(int argc, char *argv[])
 	if (bench_data.algo != 0 && bench_data.flag != 1)
 		bench_data.flag = judge_bench_flag(&argv, &argc);
 	if (argc < 7)
+	{
 		base_sort(a_lst, &bench_data);
-	return (0);
+		return (0);
+	}
 	if (run_sort(argc, argv, bench_data, a_lst))
 		return (1);
 	return (0);
