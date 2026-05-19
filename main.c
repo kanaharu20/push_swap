@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 16:36:34 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 16:53:14 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	bench_data.flag = judge_bench_flag(&argv, &argc);
-	bench_data.algo = call_algo(argv, bench_data.flag);
+	bench_data.algo = call_algo(argv);
 	if (bench_data.algo != 0)
 	{
 		argv++;

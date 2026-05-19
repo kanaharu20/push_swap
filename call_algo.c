@@ -6,22 +6,19 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/15 12:14:03 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/18 13:26:32 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 16:51:39 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	call_algo(char **argv, int bench_flag)
+int	call_algo(char **argv)
 {
 	int	flag;
 	int	i;
 
 	flag = 0;
-	if (bench_flag == 1)
-		i = 2;
-	else
-		i = 1;
+	i = 1;
 	if (argv[i] == NULL)
 		return (0);
 	if (strcmp_original(argv[i], "--simple"))

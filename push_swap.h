@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 16:10:32 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 16:53:05 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_list				*ft_lstnew(int content);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 int					error_handle(int argc, char *argv[]);
 int					strcmp_original(char *s1, char *s2);
-int					call_algo(char **argv, int bench_flag);
+int					call_algo(char **argv);
 void				bench_mark(t_data bench_mark);
 void				pa(t_list **a_lst, t_list **b_lst, t_data *bench_data);
 void				pb(t_list **a_lst, t_list **b_lst, t_data *bench_data);
