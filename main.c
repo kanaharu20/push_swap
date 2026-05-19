@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 15:43:53 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 16:01:59 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int	main(int argc, char *argv[])
 	if (bench_data.algo != 0 && bench_data.flag != 1)
 		bench_data.flag = judge_bench_flag(&argv, &argc);
 	if (argc < 7)
-		return (0);
+		base_sort(a_lst, &bench_data);
+	return (0);
 	if (run_sort(argc, argv, bench_data, a_lst))
 		return (1);
 	return (0);

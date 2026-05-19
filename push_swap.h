@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 15:42:03 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 16:10:32 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void				putstr(char *s, int *ret);
 void				put_nbr(int nbr, int *ret);
 void				put_per_something(const char format, int *ret);
 int					ft_printf(const char *format, ...);
+void				base_sort(t_list *a_lst, t_data *bench_data);
 
 #endif
