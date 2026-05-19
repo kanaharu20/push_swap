@@ -6,19 +6,23 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 10:35:05 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/18 13:26:26 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 15:42:34 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	judge_bench_flag(char **argv)
+int	judge_bench_flag(char ***argv, int *argc)
 {
 	int	bench_flag;
 
 	bench_flag = 0;
-	if (strcmp_original(argv[1], "--bench"))
+	if (strcmp_original((*argv)[1], "--bench"))
+	{
 		bench_flag = 1;
+		(*argv)++;
+		(*argc)--;
+	}
 	return (bench_flag);
 }
 
