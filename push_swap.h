@@ -81,6 +81,11 @@ void				put_per_something(const char format, int *ret);
 int					ft_printf(const char *format, ...);
 int					base_sort(t_list *a_lst, t_data *bench_data,
 						char *argv[], int argc);
+void				small_sort(t_list **a_lst, t_data *bench_data);
+void				small_sort2(t_list **a_lst, t_list **b_lst,
+						t_data *bench_data);
+void				small_sort3(t_list **a_lst, t_list **b_lst,
+						t_data *bench_data);
 t_list				*make_a_lst(t_list **a_lst, int argc, char *argv[]);
 
 #endif
