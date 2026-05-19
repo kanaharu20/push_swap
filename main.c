@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 18:01:20 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 18:26:54 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	reset(t_data *bench_data)
 	bench_data->sa_cnt = 0;
 	bench_data->sb_cnt = 0;
 	bench_data->ss_cnt = 0;
+	bench_data->total = 0;
 }
 
 static void	choose_algo(t_list **a, t_list **b, t_data *d)

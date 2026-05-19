@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/14 12:25:22 by kyonaha           #+#    #+#             */
-/*   Updated: 2026/05/18 13:27:38 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 18:26:18 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	pa(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 	push(a_lst, b_lst);
 	write(1, "pa\n", 3);
 	bench_data->pa_cnt++;
+	bench_data->total++;
 }
 
 void	pb(t_list **a_lst, t_list **b_lst, t_data *bench_data)
@@ -39,4 +40,5 @@ void	pb(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 	push(b_lst, a_lst);
 	write(1, "pb\n", 3);
 	bench_data->pb_cnt++;
+	bench_data->total++;
 }
