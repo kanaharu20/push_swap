@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 12:20:52 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 16:26:01 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 17:07:10 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	small_sort2(t_list *a_lst, t_list *b_lst, t_data *bench_data)
 		if (a_lst->rank == 0)
 		{
 			pa(&a_lst, &b_lst, bench_data);
-			break;
+			break ;
 		}
 		ra(&a_lst, bench_data);
 		tmp = tmp->next;
@@ -75,22 +75,35 @@ void	small_sort2(t_list *a_lst, t_list *b_lst, t_data *bench_data)
 	pb(&a_lst, &b_lst, bench_data);
 }
 
-void	base_sort(t_list *a_lst, t_data *bench_data)
+int	base_sort(t_list *a_lst, t_data *bench_data, char *argv[], int argc)
 {
 	int		count;
 	t_list	*b_lst;
 
 	b_lst = NULL;
-	count = lst_count(a_lst);
-	if (count == 2)
+	if (error_handle(argc, argv) == 0)
+		return (1);
+	a_lst = make_a_lst(&a_lst, argc, argv);
+	if (!a_lst)
+		return (1);
+	make_rank(&a_lst);
+	bench_data->dis = disorder(&a_lst, bench_data);
+	if (bench_data->dis != 0)
 	{
-		if (a_lst->rank > a_lst->next->content)
-			sa(&a_lst, bench_data);
+		count = lst_count(a_lst);
+		if (count == 2)
+		{
+			if (a_lst->rank > a_lst->next->content)
+				sa(&a_lst, bench_data);
+		}
+		else if (count == 3)
+			small_sort(a_lst, bench_data);
+		else if (count == 4)
+			small_sort2(a_lst, b_lst, bench_data);
+		else if (count == 5)
+			small_sort3(a_lst, b_lst, bench_data);
 	}
-	else if (count == 3)
-		small_sort(a_lst, bench_data);
-	else if (count == 4)
-		small_sort2(a_lst, b_lst, bench_data);
-	else if (count == 5)
-		small_sort3(a_lst, b_lst, bench_data);
+	if (bench_data->flag == 1)
+		bench_mark(*bench_data);
+	return (0);
 }

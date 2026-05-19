@@ -6,7 +6,7 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 16:53:05 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 17:06:25 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void				putstr(char *s, int *ret);
 void				put_nbr(int nbr, int *ret);
 void				put_per_something(const char format, int *ret);
 int					ft_printf(const char *format, ...);
-void				base_sort(t_list *a_lst, t_data *bench_data);
+int					base_sort(t_list *a_lst, t_data *bench_data,
+						char *argv[], int argc);
+t_list				*make_a_lst(t_list **a_lst, int argc, char *argv[]);
 
 #endif

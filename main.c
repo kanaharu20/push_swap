@@ -6,13 +6,13 @@
 /*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 16:53:14 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 17:05:58 by kyonaha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
+t_list	*make_a_lst(t_list **a_lst, int argc, char *argv[])
 {
 	int		i;
 	int		err_flag;
@@ -105,7 +105,7 @@ int	main(int argc, char *argv[])
 		bench_data.flag = judge_bench_flag(&argv, &argc);
 	if (argc < 7)
 	{
-		base_sort(a_lst, &bench_data);
+		base_sort(a_lst, &bench_data, argv, argc);
 		return (0);
 	}
 	if (run_sort(argc, argv, bench_data, a_lst))
