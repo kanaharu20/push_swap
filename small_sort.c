@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 12:20:52 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 15:46:16 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 15:54:56 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,29 @@ void	small_sort(t_list *a_lst, t_data *bench_data)
 	x = a_lst->rank;
 	y = a_lst->next->rank;
 	z = a_lst->next->next->rank;
-	if (x < y && y > z)
+	if (x < y && y > z && x < z)
+	{
 		ra(&a_lst, bench_data);
-	else if (x > y && y < z)
 		sa(&a_lst, bench_data);
-	else if (x < y && y > z)
+	}
+	else if (x > y && y < z && x < z)
+		sa(&a_lst, bench_data);
+	else if (x < y && y > z && x > z)
 		ra(&a_lst, bench_data);
-	else if ((x > y && y < z))
+	else if (x > y && y < z && x > z)
 		rra(&a_lst, bench_data);
-	else if (x > y && y > z)
+	else if (x > y && y > z && x > z)
+	{
 		sa(&a_lst, bench_data);
+		ra(&a_lst, bench_data);
+	}
 }
 int	base_sort(t_list *a_lst, t_list *b_lst, t_data *bench_data)
 {
 	int	count;
 
 	count = lst_count(a_lst);
-	if (count == 1)
-		return (1);
-	else if (count == 2)
+	if (count == 2)
 	{
 		if (a_lst->rank > a_lst->next->content)
 			sa(&a_lst, bench_data);
@@ -82,7 +86,7 @@ int	base_sort(t_list *a_lst, t_list *b_lst, t_data *bench_data)
 	else if (count == 4)
 		small_sort2(a_lst, b_lst, bench_data);
 	else if (count == 5)
-		small_sort3(a_lst, bench_data);
+		small_sort3(a_lst, b_lst, bench_data);
 	if (count <= 5)
 		return (1);
 	return (0);
