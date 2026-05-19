@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 12:20:52 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 16:11:36 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 16:26:01 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	small_sort2(t_list *a_lst, t_list *b_lst, t_data *bench_data)
 	while (tmp != NULL)
 	{
 		if (a_lst->rank == 0)
+		{
 			pa(&a_lst, &b_lst, bench_data);
+			break;
+		}
 		ra(&a_lst, bench_data);
 		tmp = tmp->next;
 	}
