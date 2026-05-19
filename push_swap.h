@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 16:36:17 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 17:06:25 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/19 17:56:34 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,14 @@ void				putstr(char *s, int *ret);
 void				put_nbr(int nbr, int *ret);
 void				put_per_something(const char format, int *ret);
 int					ft_printf(const char *format, ...);
-int					base_sort(t_list *a_lst, t_data *bench_data,
-						char *argv[], int argc);
+int					base_sort(t_list *a_lst, t_data *bench_data, char *argv[],
+						int argc);
 void				small_sort(t_list **a_lst, t_data *bench_data);
 void				small_sort2(t_list **a_lst, t_list **b_lst,
 						t_data *bench_data);
 void				small_sort3(t_list **a_lst, t_list **b_lst,
+						t_data *bench_data);
+void				base_sort2(t_list **a_lst, t_list **b_lst,
 						t_data *bench_data);
 t_list				*make_a_lst(t_list **a_lst, int argc, char *argv[]);
 

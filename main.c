@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 17:37:01 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 18:01:20 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,18 @@ void	reset(t_data *bench_data)
 	bench_data->ss_cnt = 0;
 }
 
+static void	choose_algo(t_list **a, t_list **b, t_data *d)
+{
+	if (d->algo == 1 || ((d->algo == 0
+				|| d->algo == 4) && d->dis < 2000))
+		buble_sort(a, b, d);
+	else if (d->algo == 2 || ((d->algo == 0
+				|| d->algo == 4) && d->dis < 5000))
+		chunk_based_sort(a, b, d);
+	else if (d->algo == 3 || (d->algo == 0 || d->algo == 4))
+		lsd_sort(a, b, d);
+}
+
 int	run_sort(int argc, char *argv[], t_data bench_data, t_list *a_lst)
 {
 	t_list	*b_lst;
@@ -68,18 +80,8 @@ int	run_sort(int argc, char *argv[], t_data bench_data, t_list *a_lst)
 	make_rank(&a_lst);
 	bench_data.dis = disorder(&a_lst, &bench_data);
 	if (bench_data.dis != 0)
-	{
-		if (bench_data.algo == 1 || ((bench_data.algo == 0
-					|| bench_data.algo == 4) && bench_data.dis < 2000))
-			buble_sort(&a_lst, &b_lst, &bench_data);
-		else if (bench_data.algo == 2 || ((bench_data.algo == 0
-					|| bench_data.algo == 4) && bench_data.dis < 5000))
-			chunk_based_sort(&a_lst, &b_lst, &bench_data);
-		else if (bench_data.algo == 3 || (bench_data.algo == 0
-				|| bench_data.algo == 4))
-			lsd_sort(&a_lst, &b_lst, &bench_data);
-		ft_lstclear(&a_lst);
-	}
+		choose_algo(&a_lst, &b_lst, &bench_data);
+	ft_lstclear(&a_lst);
 	if (bench_data.flag == 1)
 		bench_mark(bench_data);
 	return (0);

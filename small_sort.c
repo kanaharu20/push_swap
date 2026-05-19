@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 12:20:52 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 17:48:15 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/19 18:00:29 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,26 @@ void	small_sort2(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 	pb(a_lst, b_lst, bench_data);
 }
 
+void	base_sort2(t_list **a_lst, t_list **b_lst, t_data *bench_data)
+{
+	int	count;
+
+	count = lst_count(*a_lst);
+	if (count == 2)
+	{
+		if ((*a_lst)->rank > (*a_lst)->next->rank)
+			sa(a_lst, bench_data);
+	}
+	else if (count == 3)
+		small_sort(a_lst, bench_data);
+	else if (count == 4)
+		small_sort2(a_lst, b_lst, bench_data);
+	else if (count == 5)
+		small_sort3(a_lst, b_lst, bench_data);
+}
+
 int	base_sort(t_list *a_lst, t_data *bench_data, char *argv[], int argc)
 {
-	int		count;
 	t_list	*b_lst;
 
 	b_lst = NULL;
@@ -91,20 +108,7 @@ int	base_sort(t_list *a_lst, t_data *bench_data, char *argv[], int argc)
 	make_rank(&a_lst);
 	bench_data->dis = disorder(&a_lst, bench_data);
 	if (bench_data->dis != 0)
-	{
-		count = lst_count(a_lst);
-		if (count == 2)
-		{
-			if (a_lst->rank > a_lst->next->content)
-				sa(&a_lst, bench_data);
-		}
-		else if (count == 3)
-			small_sort(&a_lst, bench_data);
-		else if (count == 4)
-			small_sort2(&a_lst, &b_lst, bench_data);
-		else if (count == 5)
-			small_sort3(&a_lst, &b_lst, bench_data);
-	}
+		base_sort2(&a_lst, &b_lst, bench_data);
 	if (bench_data->flag == 1)
 		bench_mark(*bench_data);
 	ft_lstclear(&a_lst);
