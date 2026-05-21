@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyonaha <kyonaha@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 14:53:10 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/19 18:26:54 by kyonaha          ###   ########.fr       */
+/*   Updated: 2026/05/21 13:24:12 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,11 @@ void	reset(t_data *bench_data)
 
 static void	choose_algo(t_list **a, t_list **b, t_data *d)
 {
-	if (d->algo == 1 || ((d->algo == 0
-				|| d->algo == 4) && d->dis < 2000))
+	if (d->algo == 1 || ((d->algo == 0 || d->algo >= 4) && d->dis < 2000))
 		buble_sort(a, b, d);
-	else if (d->algo == 2 || ((d->algo == 0
-				|| d->algo == 4) && d->dis < 5000))
+	else if (d->algo == 2 || ((d->algo == 0 || d->algo >= 4) && d->dis < 5000))
 		chunk_based_sort(a, b, d);
-	else if (d->algo == 3 || (d->algo == 0 || d->algo == 4))
+	else if (d->algo == 3 || (d->algo == 0 || d->algo >= 4))
 		lsd_sort(a, b, d);
 }
 
