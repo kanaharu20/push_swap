@@ -6,7 +6,7 @@
 /*   By: hkanamit <hkanamit@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 12:20:52 by hkanamit          #+#    #+#             */
-/*   Updated: 2026/05/21 11:30:57 by hkanamit         ###   ########.fr       */
+/*   Updated: 2026/05/21 11:46:11 by hkanamit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,36 @@ void	small_sort(t_list **a_lst, t_data *bench_data)
 	z = (*a_lst)->next->next->rank;
 	if (x < y && y > z && x < z)
 	{
-		ra(a_lst, bench_data);
 		sa(a_lst, bench_data);
+		ra(a_lst, bench_data);
 	}
 	else if (x > y && y < z && x < z)
 		sa(a_lst, bench_data);
 	else if (x < y && y > z && x > z)
-		ra(a_lst, bench_data);
-	else if (x > y && y < z && x > z)
 		rra(a_lst, bench_data);
+	else if (x > y && y < z && x > z)
+		ra(a_lst, bench_data);
 	else if (x > y && y > z && x > z)
 	{
-		sa(a_lst, bench_data);
 		ra(a_lst, bench_data);
+		sa(a_lst, bench_data);
 	}
 }
 
 void	small_sort3(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
-	while (*a_lst != NULL)
+	int	i;
+
+	i = 5;
+	while (i-- > 0)
 	{
 		if ((*a_lst)->rank == 0 || (*a_lst)->rank == 1)
 			pb(a_lst, b_lst, bench_data);
 		else
 			ra(a_lst, bench_data);
-		(*a_lst) = (*a_lst)->next;
 	}
 	small_sort(a_lst, bench_data);
-	if ((*b_lst)->rank > (*b_lst)->next->rank)
+	if ((*b_lst)->rank < (*b_lst)->next->rank)
 		sb(b_lst, bench_data);
 	pa(a_lst, b_lst, bench_data);
 	pa(a_lst, b_lst, bench_data);
@@ -58,10 +60,10 @@ void	small_sort3(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 
 void	small_sort2(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 {
-	t_list	*tmp;
+	int	i;
 
-	tmp = *a_lst;
-	while (tmp != NULL)
+	i = 4;
+	while (i-- > 0)
 	{
 		if ((*a_lst)->rank == 0)
 		{
@@ -69,7 +71,6 @@ void	small_sort2(t_list **a_lst, t_list **b_lst, t_data *bench_data)
 			break ;
 		}
 		ra(a_lst, bench_data);
-		tmp = tmp->next;
 	}
 	small_sort(a_lst, bench_data);
 	pa(a_lst, b_lst, bench_data);
